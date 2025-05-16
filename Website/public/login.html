@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/styles/login.css">
+    <title>Cadastro</title>
+</head>
+
+<body>
+
+    <button class="voltar" onclick="window.location = 'index.html'">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    </button>
+    <main class="main_formulario">
+        <div class="formulario">
+            <caixa>
+                <h2>Bem-Vindo</h2>
+                <h1>Login</h1>
+            </caixa>
+            <div class="caixa">
+                <label for="">Email:</label>
+                <input type="text" placeholder="Ex: usuario123@gmail.com">
+            </div>
+            <div class="caixa">
+                <label for="">Senha</label>
+                <div class="senha">
+                    <input class="input_senha" type="text" placeholder="Define sua senha">
+                    <button class="mostrar">
+                        <img src="assets/img/aberto-icon.svg" alt="">
+                    </button>
+                </div>
+            </div>
+
+            <button>Entrar</button>
+            <p class="conta">Não possuí uma conta? <a href="assets/">Cadastre-se</a></p>
+        </div>
+    </main>
+    <main class="imagem">
+        <img src="assets/img/cadastro-fundo.png" alt="">
+    </main>
+</body>
+
+</html>

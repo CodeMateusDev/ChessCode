@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/styles/cadastro-login.css">
+    <link rel="stylesheet" href="assets/styles/cadastro.css">
     <title>Cadastro</title>
 </head>
 
 <body>
 
-    <button class="voltar">
+    <button class="voltar" onclick="window.location = 'index.html'">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
@@ -25,15 +25,15 @@
             <input type="text" placeholder="Coloque seu nome de usúario">
             <label for="">Senha</label>
             <input type="text" placeholder="Define sua senha">
-            <p>Contém pelo menos 8 caracter </p>
-            <p>Contém pelo menos um caracter especial </p>
-            <p>Contém pelo menos um caracter maiúsculo </p>
+            <p class="condicao">Contém pelo menos 8 caracter </p>
+            <p class="condicao">Contém pelo menos um caracter especial </p>
+            <p class="condicao">Contém pelo menos um caracter maiúsculo </p>
             <div class="caixa-pai">
                 <div class="caixa">
                     <label>Sexo</label>
                     <select name="" id="">
                         <option value="">Feminino</option>
-                        <option value="">Masculina</option>
+                        <option value="">Masculino</option>
                     </select>
                 </div>
                 <div class="caixa">
@@ -47,7 +47,7 @@
         </div>
     </main>
     <main class="imagem">
-        <img src="assets/img/cadastro-fundo.png" alt="">
+        <img src="assets/img/login_fundo.png" alt="">
     </main>
 </body>
 
