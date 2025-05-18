@@ -105,10 +105,10 @@
     window.onload = () => {
         var id = sessionStorage.CARGO
 
-        if(id == 0){
-            document.getElementById('dashboard').style.display = 'none'
-        }else{
+        if(id == 1){
             document.getElementById('dashboard').style.display = 'flex'
+        }else{
+            document.getElementById('dashboard').style.display = 'none'
         }
 
         console.log(id)
