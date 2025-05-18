@@ -15,3 +15,6 @@ create table usuario(
 );
 
 select * from usuario;
+
+insert into usuario values
+(DEFAULT, 'mateus','mateus@gmail.com','sla','masculino',1,'1111-11-11','intermediario')
