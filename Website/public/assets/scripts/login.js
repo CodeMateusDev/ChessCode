@@ -49,3 +49,16 @@ function entrar() {
 
     return false;
 }
+
+function mostrarSenha(){
+    var senha = document.getElementById('input_senha')
+    var icone = document.getElementById('img_olho')
+
+    if(senha.type == 'password'){
+        senha.type = 'text';
+        icone.src = 'assets/img/aberto-icon.svg'
+    }else{
+        senha.type = 'password';
+        icone.src = 'assets/img/fechado-icon.svg'
+    }
+}
