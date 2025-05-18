@@ -26,11 +26,11 @@
             <input id="input_email" type="text" placeholder="Ex: usuario123@gmail.com">
 
             <label for="">Senha:</label>
-            <input id="input_senha" type="text" placeholder="Define sua senha">
+            <input id="input_senha" oninput="validarTexto()" type="text" placeholder="Define sua senha">
 
-            <p class="condicao">Contém pelo menos 8 caracter </p>
-            <p class="condicao">Contém pelo menos um caracter especial </p>
-            <p class="condicao">Contém pelo menos um caracter maiúsculo </p>
+            <p class="condicao" id="quantidade">Contém pelo menos 8 caracter </p>
+            <p class="condicao" id="numero">Contém pelo menos um número </p>
+            <p class="condicao" id="maiusculo">Contém pelo menos um caracter maiúsculo </p>
 
             <div class="caixa-pai">
                 <div class="caixa">
@@ -47,16 +47,19 @@
                 </div>
             </div>
 
-            <label >Nivel no xadrez:</label>
+            <label>Nivel no xadrez:</label>
             <div class="linha_radio">
                 <div class="caixa_radio">
-                    <input type="radio" name="input_nivel" id="input_nivel" value="iniciante" class="radio"> <label>Iniciante</label>
+                    <input type="radio" name="input_nivel" id="input_nivel" value="iniciante" class="radio">
+                    <label>Iniciante</label>
                 </div>
                 <div class="caixa_radio">
-                    <input type="radio" name="input_nivel" id="input_nivel" value="intermediario" class="radio"> <label>Intermediário</label>
+                    <input type="radio" name="input_nivel" id="input_nivel" value="intermediario" class="radio">
+                    <label>Intermediário</label>
                 </div>
                 <div class="caixa_radio">
-                    <input type="radio" name="input_nivel" id="input_nivel" value="experiente" class="radio"> <label>Experiente</label>
+                    <input type="radio" name="input_nivel" id="input_nivel" value="experiente" class="radio">
+                    <label>Experiente</label>
                 </div>
             </div>
 
@@ -73,6 +76,46 @@
 
 <script>
 
+    function validarTexto() {
+        var senha = input_senha.value
+
+        var verificacao = false;
+        var tamanho = senha.length
+        var letraMaiuscula = false
+
+        if (senha.toLowerCase() != senha) {
+            letraMaiuscula = true
+        }
+        
+        if (letraMaiuscula == true) {
+            document.getElementById("maiusculo").style.color = 'green';
+        } else {
+            document.getElementById("maiusculo").style.color = 'red';
+        }
+
+
+        if (tamanho <= 8) {
+            document.getElementById("quantidade").style.color = 'red'
+        } else {
+            document.getElementById("quantidade").style.color = 'green'
+        }
+
+        for (var i = 0; i <= 9; i++) {
+            var algarismo = senha.indexOf(i.toString())
+
+            if (algarismo != -1) {
+                verificacao = true
+            }
+        }
+
+        if (verificacao == true) {
+            document.getElementById("numero").style.color = 'green';
+        } else {
+            document.getElementById("numero").style.color = 'red';
+        }
+
+
+    }
     // Array para armazenar empresas cadastradas para validação de código de ativação 
     function cadastro() {
         // aguardar();
@@ -85,7 +128,7 @@
         var sexoVar = select_sexo.value;
         var nascimentoVar = input_nascimento.value;
         var nivelVar = document.querySelector('input[name="input_nivel"]:checked')?.value;
-        
+
         // Verificando se há algum campo em branco
         if (
             nomeVar == "" ||
@@ -112,7 +155,7 @@
                 senhaServer: senhaVar,
                 sexoServer: sexoVar,
                 nascimentoServer: nascimentoVar,
-                nivelServer:nivelVar
+                nivelServer: nivelVar
             }),
         })
             .then(function (resposta) {
