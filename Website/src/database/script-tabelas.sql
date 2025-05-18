@@ -1,3 +1,4 @@
+-- Active: 1747516402911@@127.0.0.1@3306@chesscode
 CREATE DATABASE chesscode;
 
 USE chesscode;
@@ -12,3 +13,5 @@ create table usuario(
     dtnascimento DATE,
     nivel varchar(45)
 );
+
+select * from usuario;

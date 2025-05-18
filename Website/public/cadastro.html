@@ -26,7 +26,7 @@
             <input id="input_email" type="text" placeholder="Ex: usuario123@gmail.com">
 
             <label for="">Senha:</label>
-            <input input_senha type="text" placeholder="Define sua senha">
+            <input id="input_senha" type="text" placeholder="Define sua senha">
 
             <p class="condicao">Contém pelo menos 8 caracter </p>
             <p class="condicao">Contém pelo menos um caracter especial </p>
@@ -35,32 +35,32 @@
             <div class="caixa-pai">
                 <div class="caixa">
                     <label>Sexo:</label>
-                    <select id="select">
-                        <option value="">Feminino</option>
-                        <option value="">Masculino</option>
+                    <select id="select_sexo">
+                        <option value="feminino">Feminino</option>
+                        <option value="masculino">Masculino</option>
                     </select>
                 </div>
 
                 <div class="caixa">
                     <label for="">Data de Nascimento:</label>
-                    <input type="date" id="sexo">
+                    <input type="date" id="input_nascimento">
                 </div>
             </div>
 
-            <label for="">Nivel no xadrez:</label>
+            <label >Nivel no xadrez:</label>
             <div class="linha_radio">
                 <div class="caixa_radio">
-                    <input type="radio" name="input_nivel" class="radio"> <label>Iniciante</label>
+                    <input type="radio" name="input_nivel" id="input_nivel" value="iniciante" class="radio"> <label>Iniciante</label>
                 </div>
                 <div class="caixa_radio">
-                    <input type="radio" name="input_nivel" class="radio"> <label>Intermediário</label>
+                    <input type="radio" name="input_nivel" id="input_nivel" value="intermediario" class="radio"> <label>Intermediário</label>
                 </div>
                 <div class="caixa_radio">
-                    <input type="radio" name="input_nivel" class="radio"> <label>Experiente</label>
+                    <input type="radio" name="input_nivel" id="input_nivel" value="experiente" class="radio"> <label>Experiente</label>
                 </div>
             </div>
 
-            <button onclick="cadastrar()">Criar conta</button>
+            <button onclick="cadastro()">Criar conta</button>
             <p class="conta">Já possuí uma conta? <a href="login.html">Entrar</a></p>
         </div>
     </main>
@@ -74,7 +74,7 @@
 <script>
 
     // Array para armazenar empresas cadastradas para validação de código de ativação 
-    function cadastrar() {
+    function cadastro() {
         // aguardar();
 
         //Recupere o valor da nova input pelo nome do id
@@ -82,9 +82,9 @@
         var nomeVar = input_nome.value;
         var emailVar = input_email.value;
         var senhaVar = input_senha.value;
-        var sexoVar = input_sexo.value;
+        var sexoVar = select_sexo.value;
         var nascimentoVar = input_nascimento.value;
-        var nivelVar = input_nivel.value;
+        var nivelVar = document.querySelector('input[name="input_nivel"]:checked')?.value;
         
         // Verificando se há algum campo em branco
         if (
@@ -96,12 +96,8 @@
             nivelVar == ""
         ) {
             console.log("Mensagem de erro para todos os campos em branco");
-            finalizarAguardar();
             return false;
-        } else {
-            setInterval(sumirMensagem, 5000);
         }
-
         // Enviando o valor da nova input
         fetch("/usuarios/cadastrar", {
             method: "POST",
@@ -128,47 +124,42 @@
                     // mensagem_erro.innerHTML =
                     //     "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
-                    
+                    alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...")
 
                     setTimeout(() => {
                         window.location = "login.html";
                     }, "2000");
 
-                    limparFormulario();
-                    finalizarAguardar();
                 } else {
                     throw "Houve um erro ao tentar realizar o cadastro!";
                 }
             })
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
-                finalizarAguardar();
             });
 
         return false;
     }
 
-    // Listando empresas cadastradas 
-    function listar() {
-        fetch("/empresas/listar", {
-            method: "GET",
-        })
-            .then(function (resposta) {
-                resposta.json().then((empresas) => {
-                    empresas.forEach((empresa) => {
-                        listaEmpresasCadastradas.push(empresa);
+    // // Listando empresas cadastradas 
+    // function listar() {
+    //     fetch("/empresas/listar", {
+    //         method: "GET",
+    //     })
+    //         .then(function (resposta) {
+    //             resposta.json().then((empresas) => {
+    //                 empresas.forEach((empresa) => {
+    //                     listaEmpresasCadastradas.push(empresa);
 
-                        console.log("listaEmpresasCadastradas")
-                        console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-                    });
-                });
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-            });
-    }
+    //                     console.log("listaEmpresasCadastradas")
+    //                     console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+    //                 });
+    //             });
+    //         })
+    //         .catch(function (resposta) {
+    //             console.log(`#ERRO: ${resposta}`);
+    //         });
+    // }
 
-    function sumirMensagem() {
-        cardErro.style.display = "none";
-    }
+
 </script>
