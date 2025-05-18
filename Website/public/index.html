@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/styles/home.css">
+    <script src="assets/scripts/login.js"></script>
     <title>ChessCode</title>
 </head>
 
@@ -23,8 +24,10 @@
                 <button id="dashboard">Dashboard</button>
             </div>
             <div class="acesso">
-                <button class="entrar" onclick="window.location = 'login.html'">Entrar</button>
-                <button class="cadastro" onclick="window.location = 'cadastro.html'">Cadastrar</button>
+                <button id="button_sair" class="sair" onclick="limparSessao()">Sair</button>
+                <button id="button_entrar" class="entrar" onclick="window.location = 'login.html'">Entrar</button>
+                <button id="button_cadastrar" class="cadastro"
+                    onclick="window.location = 'cadastro.html'">Cadastrar</button>
             </div>
         </nav>
         <div class="linha">
@@ -102,15 +105,34 @@
 </html>
 
 <script>
-    window.onload = () => {
-        var id = sessionStorage.CARGO
 
-        if(id == 1){
+    function limparSessao() {
+        sessionStorage.clear();
+        window.location = "index.html";
+        console.log('limpou')
+    }
+
+    window.onload = () => {
+
+        var id = sessionStorage.CARGO
+        var idusuario = sessionStorage.ID_USUARIO
+
+        if (idusuario == null) {
+            document.getElementById('button_entrar').style.display = 'flex';
+            document.getElementById('button_cadastrar').style.display = 'flex';
+        } else {
+            document.getElementById('button_sair').style.display = 'flex';
+            document.getElementById('button_entrar').style.display = 'none';
+            document.getElementById('button_cadastrar').style.display = 'none';
+        }
+
+        if (id == 1) {
             document.getElementById('dashboard').style.display = 'flex'
-        }else{
+        } else {
             document.getElementById('dashboard').style.display = 'none'
         }
 
         console.log(id)
     }
+
 </script>
