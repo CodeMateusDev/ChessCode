@@ -10,26 +10,26 @@
 </head>
 
 <body>
+    <nav>
+        <div class="logo">
+            <img src="assets/img/LOGO.svg">
+        </div>
+        <div class="navegacao">
+            <button id="select">História</button>
+            <button>Campeões</button>
+            <button>Figuras Hitóricas</button>
+            <button onclick="window.location = 'quiz.html'">Quiz</button>
+            <button id="dashboard">Dashboard</button>
+        </div>
+        <div class="acesso">
+            <button id="button_sair" class="sair" onclick="limparSessao()">Sair</button>
+            <button id="button_entrar" class="entrar" onclick="window.location = 'login.html'">Entrar</button>
+            <button id="button_cadastrar" class="cadastro"
+                onclick="window.location = 'cadastro.html'">Cadastrar</button>
+        </div>
+    </nav>
     <main class="historia">
         <img src="assets/img/fundo-rainha.svg" id="rainha" alt="">
-        <nav>
-            <div class="logo">
-                <img src="assets/img/LOGO.svg">
-            </div>
-            <div class="navegacao">
-                <button id="select">História</button>
-                <button>Campeões</button>
-                <button>Figuras Hitóricas</button>
-                <button>Quiz</button>
-                <button id="dashboard">Dashboard</button>
-            </div>
-            <div class="acesso">
-                <button id="button_sair" class="sair" onclick="limparSessao()">Sair</button>
-                <button id="button_entrar" class="entrar" onclick="window.location = 'login.html'">Entrar</button>
-                <button id="button_cadastrar" class="cadastro"
-                    onclick="window.location = 'cadastro.html'">Cadastrar</button>
-            </div>
-        </nav>
         <div class="linha">
             <section class="texto">
                 <h1>O Jogo dos Reis: A História do Xadrez</h1>
