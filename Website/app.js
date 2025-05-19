@@ -15,7 +15,7 @@ var HOST_APP = process.env.APP_HOST;
 var app = express();
 
 var usuarioRouter = require("./src/routes/usuarios");
-var quizRouter
+var quizRouter = require("./src/routes/quiz")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -42,3 +42,5 @@ app.listen(PORTA_APP, function () {
     \tSe .:producao:. você está se conectando ao banco remoto. \n\n
     \t\tPara alterar o ambiente, comente ou descomente as linhas 1 ou 2 no arquivo 'app.js'\n\n`);
 });
+
+

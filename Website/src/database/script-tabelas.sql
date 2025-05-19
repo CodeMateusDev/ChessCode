@@ -17,14 +17,21 @@ create table usuario(
 select * from usuario;
 
 insert into usuario values
-(DEFAULT, 'mateus','mateus@gmail.com','sla','masculino',1,'1111-11-11','intermediario')
+(DEFAULT, 'mateus','mateus@gmail.com','sla','masculino',1,'1111-11-11','intermediario');
 
-CREATE TABLE QUIZ values(
-    idRegistro INT PRIMARY KEY
+CREATE TABLE QUIZ(
+    idRegistro INT PRIMARY KEY AUTO_INCREMENT,
     idQuiz int,
     acertos int,
     erros int,
     fkusuario int,
     tempo int, 
+    porcentagem DECIMAL(4,2),
     Foreign Key (fkusuario) REFERENCES usuario(idusuario)
 );
+
+
+insert into quiz values
+(DEFAULT,1,2,3,1,3,1.1);
+
+select * from quiz;
