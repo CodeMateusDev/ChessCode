@@ -18,7 +18,7 @@
             <button id="select">História</button>
             <button>Campeões</button>
             <button>Figuras Hitóricas</button>
-            <button onclick="window.location = 'quiz.html'">Quiz</button>
+            <button onclick="analisar()">Quiz</button>
             <button id="dashboard">Dashboard</button>
         </div>
         <div class="acesso">
@@ -105,6 +105,8 @@
 </html>
 
 <script>
+    var id = sessionStorage.CARGO
+    var idusuario = sessionStorage.ID_USUARIO
 
     function limparSessao() {
         sessionStorage.clear();
@@ -114,8 +116,6 @@
 
     window.onload = () => {
 
-        var id = sessionStorage.CARGO
-        var idusuario = sessionStorage.ID_USUARIO
 
         if (idusuario == null) {
             document.getElementById('button_entrar').style.display = 'flex';
@@ -133,6 +133,14 @@
         }
 
         console.log(id)
+    }
+
+    function analisar() {
+        if (idusuario == null) {
+            window.location = 'login.html'
+        } else {
+            window.location = 'quizes.html'
+        }
     }
 
 </script>

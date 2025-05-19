@@ -1,4 +1,4 @@
--- Active: 1747516402911@@127.0.0.1@3306@chesscode
+
 CREATE DATABASE chesscode;
 
 USE chesscode;
