@@ -27,11 +27,15 @@ CREATE TABLE QUIZ(
     fkusuario int,
     tempo int, 
     porcentagem DECIMAL(4,2),
+    dtRealizacao date
     Foreign Key (fkusuario) REFERENCES usuario(idusuario)
 );
-
+        INSERT INTO quiz (idQuiz, acertos, erros, fkusuario, tempo, porcentagem, dtRealizacao) 
+VALUES ('1', '1', '1', '21', '12', '12', CURDATE());
 
 insert into quiz values
 (DEFAULT,1,2,3,1,3,1.1);
 
 select * from quiz;
+
+SELECT nome from quiz join usuario on fkusuario = idusuario where idusuario = 21;

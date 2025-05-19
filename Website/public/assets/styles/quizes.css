@@ -1,11 +1,12 @@
 /* Não usar pure white or pure black: https://uxplanet.org/basicdesign-never-use-pure-black-in-typography-36138a3327a6 */
 /* The 4-point grid system: https://medium.com/@sainzkike/controlling-spacing-in-design-systems-multiple-spacing-9bf1afec87f */
 
-*{
+* {
     margin: 0;
     padding: 0;
 }
-body{
+
+body {
     display: flex;
 }
 
@@ -82,7 +83,7 @@ button {
 }
 
 
-aside{
+aside {
     width: 16vw;
     height: 100vh;
     background-color: #000000;
@@ -91,7 +92,7 @@ aside{
     align-items: center;
 }
 
-aside ul{
+aside ul {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -99,36 +100,37 @@ aside ul{
     list-style-type: none;
 }
 
-aside #logo{
+aside #logo {
     position: relative;
     top: -18vh;
     width: 12vw;
 }
 
-.coluna{
+.coluna {
     display: flex;
     flex-direction: column;
 
-    img{
+    img {
         cursor: pointer;
     }
 }
 
-.linha{
+.linha {
     display: flex;
 }
 
-#dashboard{
+#dashboard {
     background-color: white;
     color: #000000;
 }
-aside svg{
+
+aside svg {
     width: 30%;
     height: 4vh;
     padding: 10px 0px;
 }
 
-.caixa{
+.caixa {
     display: flex;
     font-size: 1.2vw;
     font-weight: 900;
@@ -136,7 +138,7 @@ aside svg{
     width: 70%;
 }
 
-.select-aside{
+.select-aside {
     align-items: center;
     width: 120%;
     display: flex;
@@ -148,18 +150,19 @@ aside svg{
     transition: background-color 0.2s, color 0.2s;
 }
 
-.select-aside #dashboard_icon path{
+.select-aside #dashboard_icon path {
     fill: #87502F;
     stroke: #87502F;
     transition: fill 0.2s, stroke 0.2s;
 }
-.select-aside svg path{
+
+.select-aside svg path {
     fill: white;
     stroke: white;
     transition: fill 0.2s, stroke 0.2s;
 }
 
-.select-aside:hover{
+.select-aside:hover {
     background-color: white;
     color: #000000;
 }
@@ -168,3 +171,138 @@ aside svg{
     fill: #000000;
     stroke: #000000;
 }
+
+#historico {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div_pai {
+    width: 80%;
+    height: 80%;
+    background-color: rgb(0, 0, 0);
+    border-radius: 15px;
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+
+}
+
+.titulo {
+    color: #ffffff;
+    font-size: 3.5vh;
+    padding: 2vh 4vh;
+    position: absolute;
+    top: 3%;
+    left: 50%;
+    background-color: #000000;
+    border: 2px solid #ffff;
+    border-radius: 10px;
+}
+
+section {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.scroll_historico {
+    width: 100%;
+    height: 90%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+}
+
+.legenda {
+    display: flex;
+    width: 100%;
+    height: 10%;
+    justify-content: space-around;
+    background-color: #D7D7D7;
+    font-weight: bold;
+    border-bottom: #000000 solid 2px;
+}
+
+.legenda span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scroll {
+    width: 100%;
+    height: 90%;
+    background-color: white;
+    overflow-y: scroll;
+}
+
+.scroll::-webkit-scrollbar {
+    width: 0.7vw;
+}
+
+.scroll::-webkit-scrollbar-track {
+    background: #dad9d9;
+    border-radius: 10px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+    border: 2px solid #f1f1f1;
+}
+
+.scroll::-webkit-scrollbar-thumb:hover {
+    background-color: #727272;
+}
+
+
+.dados span {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.txt_viveiro{
+
+    margin-left: 2%
+
+}
+
+.txt_sensor{
+
+margin-left: 5%;
+
+}
+
+.txt_data{
+
+
+}
+
+.txt_ppm{
+
+    margin-right: 11%;
+
+}
+
+
+.txt_alerta{
+
+
+    margin-right: 4.8%;
+}
+
+
+.dados {
+    display: flex;
+    width: 100%;
+    height: 10%;
+    justify-content: space-around;
+    font-weight: bold;
+    border-bottom: #87502F solid 2px;
+}
+
