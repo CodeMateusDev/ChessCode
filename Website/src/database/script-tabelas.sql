@@ -18,3 +18,13 @@ select * from usuario;
 
 insert into usuario values
 (DEFAULT, 'mateus','mateus@gmail.com','sla','masculino',1,'1111-11-11','intermediario')
+
+CREATE TABLE QUIZ values(
+    idRegistro INT PRIMARY KEY
+    idQuiz int,
+    acertos int,
+    erros int,
+    fkusuario int,
+    tempo int, 
+    Foreign Key (fkusuario) REFERENCES usuario(idusuario)
+);

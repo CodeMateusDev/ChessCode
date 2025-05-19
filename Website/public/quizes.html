@@ -11,9 +11,9 @@
 
 <body onload="onloadEsconder()">
     <div id="pontuacaoEJogo">
-        <button id="quiz1" onclick="iniciarQuiz(listaDeQuestoes1)">INICIAR QUIZ</button>
-        <button id="quiz2" onclick="iniciarQuiz(listaDeQuestoes2)">INICIAR QUIZ</button>
-        <button id="quiz3" onclick="iniciarQuiz(listaDeQuestoes3)">INICIAR QUIZ</button>
+        <button id="quiz1" onclick="iniciarQuiz(listaDeQuestoes1, 'quiz2', 'quiz3', 1)">INICIAR QUIZ1</button>
+        <button id="quiz2" onclick="iniciarQuiz(listaDeQuestoes2,'quiz1','quiz3',2)">INICIAR QUIZ2</button>
+        <button id="quiz3" onclick="iniciarQuiz(listaDeQuestoes3, 'quiz1','quiz2',3)">INICIAR QUIZ3</button>
 
         <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
             <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
@@ -76,7 +76,8 @@
 </html>
 <script>
 
-    var escolhido = []
+    var escolhido = ''
+    var idQuiz = ''
     const listaDeQuestoes1 = [
         {
             pergunta: "Qual mês tem teste2?",
@@ -139,12 +140,16 @@
         }
     ]
     // variáveis globais    
+    var id = sessionStorage.ID_USUARIO
     let numeroDaQuestaoAtual = 0
     let pontuacaoFinal = 0
     let tentativaIncorreta = 0
     let certas = 0
     let erradas = 0
     let quantidadeDeQuestoes = 0
+    var contador = 0
+    var tempo = 0
+    var minutos = 0
     // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
     function onloadEsconder() {
@@ -153,10 +158,22 @@
         document.getElementById('jogo').style.display = "none"
     }
 
-    function iniciarQuiz(quiz) {
+    function iniciarQuiz(quiz, escondido1, escondido2, idDoquiz) {
+        tempo = setInterval(() => {
+            if(contador == 60){
+                minutos++
+                contador = 0
+            }else{
+            contador++;
+            }
+            console.log("Contador:", contador);
+        }, 1000); // 1000 ms = 1 segundo
 
+
+        document.getElementById(escondido1).style.display = "none"
+        document.getElementById(escondido2).style.display = "none"
         escolhido = quiz
-        alert(escolhido)
+        idQuiz = idDoquiz
         quantidadeDeQuestoes = escolhido.length
 
         document.getElementById('pontuacao').style.display = "flex"
@@ -296,6 +313,8 @@
         let textoParaMensagemFinal = null
         let classComCoresParaMensagemFinal = null
         const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
+        clearInterval(tempo);
+        alert(minutos + ':' + contador)
 
         if (porcentagemFinalDeAcertos <= 0.3) {
             textoParaMensagemFinal = "Parece que você não estudou..."
@@ -324,6 +343,5 @@
         // btnConcluir.disabled = true
         btnTentarNovamente.disabled = false
 
-        alert(certas)
     }
 </script>
