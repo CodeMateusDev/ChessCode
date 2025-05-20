@@ -28,8 +28,12 @@ function entrar() {
                 sessionStorage.NOME_USUARIO = json.nome;
                 sessionStorage.ID_USUARIO = json.id;
                 sessionStorage.CARGO = json.cargo;
+                
+                document.getElementById('aviso2').style.display = 'flex'
 
-                window.location = "index.html";
+                setTimeout(() => {
+                    window.location = "index.html";
+                }, "2000");
             });
 
 
@@ -39,9 +43,7 @@ function entrar() {
 
             resposta.text().then(texto => {
                 console.error(texto);
-                document.getElementById('emailErrado').style.display = 'flex'
-                document.getElementById('senhaErrado').style.display = 'flex'
-
+                document.getElementById('aviso1').style.display = 'flex'
             });
         }
 
@@ -52,14 +54,14 @@ function entrar() {
     return false;
 }
 
-function mostrarSenha(){
+function mostrarSenha() {
     var senha = document.getElementById('input_senha')
     var icone = document.getElementById('img_olho')
 
-    if(senha.type == 'password'){
+    if (senha.type == 'password') {
         senha.type = 'text';
         icone.src = 'assets/img/aberto-icon.svg'
-    }else{
+    } else {
         senha.type = 'password';
         icone.src = 'assets/img/fechado-icon.svg'
     }
