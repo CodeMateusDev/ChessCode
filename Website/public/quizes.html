@@ -84,7 +84,7 @@
         </ul>
     </aside>
     <main id="usarquiz" style="height: 100vh; width: 84vw">
-        picas
+        teste
     </main>
     <main id="quiz">
         <div id="pontuacaoEJogo">
@@ -104,8 +104,7 @@
             <div id="jogo" class="width-fit-content flex-colunar border-secondary">
 
                 <div id="infoQuestao" class="padding-8">
-                    <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
-                        questões.</span>
+                    <span>Questão <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span></span>
                 </div>
 
                 <div id="perguntaDaQuestaoAtual" class="padding-8">
@@ -280,7 +279,6 @@
         idQuiz = idDoquiz
         quantidadeDeQuestoes = escolhido.length
 
-        document.getElementById('pontuacao').style.display = "flex"
         document.getElementById('jogo').style.display = "flex"
 
         document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
@@ -415,6 +413,9 @@
 
     var porcentagemFinalDeAcertos = 0
     function finalizarJogo() {
+        document.getElementById('pontuacao').style.display = "flex"
+        document.getElementById('jogo').style.display = "none"
+        document.getElementById('btnTentarNovamente').style.display = "flex"
         let textoParaMensagemFinal = null
         let classComCoresParaMensagemFinal = null
         porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes

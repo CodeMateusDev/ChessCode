@@ -39,7 +39,9 @@ function entrar() {
 
             resposta.text().then(texto => {
                 console.error(texto);
-                alert('senha errada')
+                document.getElementById('emailErrado').style.display = 'flex'
+                document.getElementById('senhaErrado').style.display = 'flex'
+
             });
         }
 
