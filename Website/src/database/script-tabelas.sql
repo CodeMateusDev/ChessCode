@@ -14,9 +14,6 @@ create table usuario(
     nivel varchar(45)
 );
 
-SELECT AVG(TIMESTAMPDIFF(YEAR, dtnascimento, CURDATE())) AS idade_media
-FROM usuario WHERE idusuario = ;
-
 select * from usuario;
 
 insert into usuario values
