@@ -187,6 +187,7 @@
         exibirHistorico()
     }
 
+    var arredondada = 0
     var escolhido = ''
     var idQuiz = ''
     const listaDeQuestoes1 = [
@@ -458,6 +459,8 @@
 
         document.getElementById('jogo').classList.add("text-new-gray")
 
+        arredondada = Math.round((porcentagemFinalDeAcertos) * 100)
+
         btnProx.disabled = true
         btnSubmeter.disabled = true
         // btnConcluir.disabled = true
@@ -480,7 +483,7 @@
                 erradasServer: erradas,
                 usuarioServer: idusuario,
                 contadorServer: contador,
-                porcentagemServer: porcentagemFinalDeAcertos
+                porcentagemServer: arredondada
             }),
         })
             .then(function (resposta) {

@@ -4,63 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/styles/quiz.css">
     <title>Document</title>
 </head>
 
 <body>
-    <nav>
-        <div class="logo">
-            <img src="assets/img/LOGO.svg">
-        </div>
-        <div class="navegacao">
-            <button onclick="window.location = 'index.html'">História</button>
-            <button>Campeões</button>
-            <button>Figuras Hitóricas</button>
-            <button id="select" onclick="window.location = 'quiz.html'">Quiz</button>
-            <button id="dashboard">Dashboard</button>
-        </div>
-        <div class="acesso">
-            <button id="button_sair" class="sair" onclick="limparSessao()">Sair</button>
-            <button id="button_sair" class="sair" onclick="limparSessao()">Sair</button>
-            <button id="button_entrar" class="entrar" onclick="window.location = 'login.html'">Entrar</button>
-            <button id="button_cadastrar" class="cadastro"
-                onclick="window.location = 'cadastro.html'">Cadastrar</button>
-        </div>
-
-        <button onclick="window.location = 'quizes.html'"> TESTE </button>
-    </nav>
+    <h1 id="h1">
+    </h1>
+    <button onclick="ativar()"></button>
 </body>
 
 </html>
 
 <script>
-    function limparSessao() {
-        sessionStorage.clear();
-        window.location.reload();
-        console.log('limpou')
-    }
+    var n = 70
+    var minutos = 0
+    var segundos = 0
 
-    window.onload = () => {
+    function ativar() {
 
-        var id = sessionStorage.CARGO
-        var idusuario = sessionStorage.ID_USUARIO
-
-        if (idusuario == null) {
-            document.getElementById('button_entrar').style.display = 'flex';
-            document.getElementById('button_cadastrar').style.display = 'flex';
-        } else {
-            document.getElementById('button_sair').style.display = 'flex';
-            document.getElementById('button_entrar').style.display = 'none';
-            document.getElementById('button_cadastrar').style.display = 'none';
+        for (var i = 0; i <= n; ++i) {
+            segundos++            
+            if(segundos == 60){
+                minutos++
+                segundos = 0
+            }
         }
+            console.log(minutos)
+            console.log(segundos)
 
-        if (id == 1) {
-            document.getElementById('dashboard').style.display = 'flex'
-        } else {
-            document.getElementById('dashboard').style.display = 'none'
-        }
-
-        console.log(id)
     }
 </script>

@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: 'poppins', 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+}
+
+aside {
+    width: 14vw;
+    height: 100vh;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+aside ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5vw;
+    list-style-type: none;
+}
+
+aside #logo {
+    position: relative;
+    top: -18vh;
+    width: 12vw;
+}
+
+.coluna {
+    display: flex;
+    flex-direction: column;
+
+    img {
+        cursor: pointer;
+    }
+}
+
+.linha {
+    display: flex;
+}
+
+#selecionado {
+    background-color: white;
+    color: #000000;
+    fill: black;
+    svg path {
+        fill: rgb(0, 0, 0);
+        stroke: rgb(0, 0, 0);
+        transition: fill 0.2s, stroke 0.2s;
+    }
+}
+
+aside svg {
+    width: 30%;
+    height: 4vh;
+    padding: 10px 0px;
+}
+
+.caixa {
+    display: flex;
+    font-size: 1.2vw;
+    justify-content: start;
+    width: 70%;
+    font-weight: 500;
+}
+
+.select-aside {
+    align-items: center;
+    width: 100%;
+    display: flex;
+    background-color: rgba(198, 75, 75, 0);
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid white;
+    color: white;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.select-aside #dashboard_icon path {
+    fill: #87502F;
+    stroke: #87502F;
+    transition: fill 0.2s, stroke 0.2s;
+}
+
+.select-aside svg path {
+    fill: white;
+    stroke: white;
+    transition: fill 0.2s, stroke 0.2s;
+}
+
+.select-aside:hover {
+    background-color: white;
+    color: #000000;
+}
+
+.select-aside:hover svg path {
+    fill: #000000;
+    stroke: #000000;
+}
+
+.Maindashboard {
+    height: 100vh;
+    width: 86vw;
+    display: flex;
+}
+
+.kpis {
+    display: flex;
+    flex-direction: column;
+    width: 13%;
+    height: 96vh;
+    padding: 2vh 1%;
+    gap: 5%;
+}
+
+.kpi {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid gray;
+    border-radius: 10px;
+
+    p {
+        text-align: center;
+        font-size: 3vh;
+    }
+
+    .dados {
+        margin-top: 5%;
+        text-align: center;
+        font-size: 5vh;
+    }
+}
+
+
+
+.graficos {
+    padding: 2vh 1%;
+    width: 83%;
+    height: 96vh;
+    display: flex;
+    flex-direction: column;
+    gap: 2%;
+}
+
+.graficos .linha {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    gap: 1%;
+
+}
+
+.caixas_grafico {
+    border: 1px solid gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 50%;
+    max-width: 50%;
+    max-height: 99.9%;
+    background-color: white;
+}
+
+.VizuGrafico {
+    margin-left: 2%;
+}
+
+.textoGrafico {
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+        margin-top: -30%;
+        margin-bottom: 10%;
+        text-align: center;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    span {
+        align-self: center;
+    }
+}
