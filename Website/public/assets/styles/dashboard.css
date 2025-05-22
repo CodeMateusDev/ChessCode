@@ -173,6 +173,14 @@ aside svg {
 
 .VizuGrafico {
     margin-left: 2%;
+    width: 56%;
+    height: 56%;
+}
+
+.graficoLinha {
+    margin-left: 2%;
+    width: 100%;
+    height: 100%;
 }
 
 .textoGrafico {

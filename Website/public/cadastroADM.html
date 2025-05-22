@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="assets/styles/dashboard.css">
+    <link rel="stylesheet" href="assets/styles/cadastroADM.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -56,12 +56,12 @@
             </button>
 
 
-            <button class="select-aside"" onclick="window.location = 'quiz3.html'">
-                <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision"
-                    text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd"
-                    clip-rule="evenodd" viewBox="0 0 511.999 463.377">
-                    <path
-                        d="M289.639 9.137c12.411 7.25 23.763 18.883 33.037 34.913l.97 1.813 1.118 1.941 174.174 302.48c33.712 56.407-1.203 113.774-66.174 112.973v.12H73.485c-.895 0-1.78-.04-2.657-.112-59.104-.799-86.277-54.995-61.909-106.852.842-1.805 1.816-3.475 2.816-5.201L189.482 43.959l-.053-.032c9.22-15.786 20.717-27.457 33.411-34.805C243.788-3 268.711-3.086 289.639 9.137zM255.7 339.203c13.04 0 23.612 10.571 23.612 23.612 0 13.041-10.572 23.613-23.612 23.613-13.041 0-23.613-10.572-23.613-23.613s10.572-23.612 23.613-23.612zm17.639-35.379c-.794 19.906-34.506 19.931-35.278-.006-3.41-34.108-12.129-111.541-11.853-143.591.284-9.874 8.469-15.724 18.939-17.955 3.231-.686 6.781-1.024 10.357-1.019 3.595.008 7.153.362 10.387 1.051 10.818 2.303 19.309 8.392 19.309 18.446l-.043 1.005-11.818 142.069zM37.596 369.821L216.864 59.942c21.738-37.211 56.225-38.289 78.376 0l176.298 306.166c17.177 28.285 10.04 66.236-38.774 65.488H73.485c-33.017.756-52.841-25.695-35.889-61.775z" />
+            <button class="select-aside"" onclick=" window.location='quiz3.html'">
+                <svg xmlns=" http://www.w3.org/2000/svg" shape-rendering="geometricPrecision"
+                text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd"
+                clip-rule="evenodd" viewBox="0 0 511.999 463.377">
+                <path
+                    d="M289.639 9.137c12.411 7.25 23.763 18.883 33.037 34.913l.97 1.813 1.118 1.941 174.174 302.48c33.712 56.407-1.203 113.774-66.174 112.973v.12H73.485c-.895 0-1.78-.04-2.657-.112-59.104-.799-86.277-54.995-61.909-106.852.842-1.805 1.816-3.475 2.816-5.201L189.482 43.959l-.053-.032c9.22-15.786 20.717-27.457 33.411-34.805C243.788-3 268.711-3.086 289.639 9.137zM255.7 339.203c13.04 0 23.612 10.571 23.612 23.612 0 13.041-10.572 23.613-23.612 23.613-13.041 0-23.613-10.572-23.613-23.613s10.572-23.612 23.613-23.612zm17.639-35.379c-.794 19.906-34.506 19.931-35.278-.006-3.41-34.108-12.129-111.541-11.853-143.591.284-9.874 8.469-15.724 18.939-17.955 3.231-.686 6.781-1.024 10.357-1.019 3.595.008 7.153.362 10.387 1.051 10.818 2.303 19.309 8.392 19.309 18.446l-.043 1.005-11.818 142.069zM37.596 369.821L216.864 59.942c21.738-37.211 56.225-38.289 78.376 0l176.298 306.166c17.177 28.285 10.04 66.236-38.774 65.488H73.485c-33.017.756-52.841-25.695-35.889-61.775z" />
                 </svg>
                 <div class="caixa">
                     <p>Quiz 3 </p>
@@ -101,61 +101,56 @@
         </ul>
     </aside>
     <main id="Maindashboard" class="Maindashboard">
-        <div class="graficos">
-            <div class="linha">
-                <div class="caixas_grafico">
-                    <canvas class="VizuGrafico" id="Graficopublico"></canvas>
-                    <div class="textoGrafico">
-                        <h3>Porcentagem do público</h3>
-                        <p>Masculino</p>
-                        <span>10</span>
-                        <p>Femino</p>
-                        <span>20</span>
-                    </div>
+        <div class="formulario">
+            <h1>Cadastra-se</h1>
+
+            <label for="">Nome de usúario:</label>
+            <input id="input_nome" type="text" placeholder="Coloque seu nome de usúario">
+
+            <label for="">Email:</label>
+            <input id="input_email" type="text" placeholder="Ex: usuario123@gmail.com">
+
+            <label for="">Senha:</label>
+            <input id="input_senha" oninput="validarTexto()" type="text" placeholder="Define sua senha">
+
+            <p class="condicao" id="quantidade">Contém pelo menos 8 caracter </p>
+            <p class="condicao" id="numero">Contém pelo menos um número </p>
+            <p class="condicao" id="maiusculo">Contém pelo menos um caracter maiúsculo </p>
+
+            <div class="caixa-pai">
+                <div class="caixa">
+                    <label>Sexo:</label>
+                    <select id="select_sexo">
+                        <option value="feminino">Feminino</option>
+                        <option value="masculino">Masculino</option>
+                    </select>
                 </div>
-                <div class="caixas_grafico">
-                    <canvas class="VizuGrafico" id="GraficofezQuiz"></canvas>
-                    <div class="textoGrafico">
-                        <h3>Porcentagem de usuario que responderam o quiz</h3>
-                        <p>Usuarios</p>
-                        <span>10</span>
-                        <p>Usuarios Quiz</p>
-                        <span>20</span>
-                    </div>
+
+                <div class="caixa">
+                    <label for="">Data de Nascimento:</label>
+                    <input type="number" id="input_nascimento">
                 </div>
             </div>
-            <div class="linha">
-                <div class="caixas_grafico">
-                    <canvas class="graficoLinha" id="GraficoQntQuiz"></canvas>
+
+            <label>Nivel no xadrez:</label>
+            <div class="linha_radio">
+                <div class="caixa_radio">
+                    <input type="radio" name="input_nivel" id="input_nivel" value="iniciante" class="radio">
+                    <label>Iniciante</label>
                 </div>
-                <div class="caixas_grafico">
-                    <canvas class="graficoLinha" id="Graficonivel"></canvas>
+                <div class="caixa_radio">
+                    <input type="radio" name="input_nivel" id="input_nivel" value="intermediario" class="radio">
+                    <label>Intermediário</label>
+                </div>
+                <div class="caixa_radio">
+                    <input type="radio" name="input_nivel" id="input_nivel" value="experiente" class="radio">
+                    <label>Experiente</label>
                 </div>
             </div>
+
+            <button onclick="cadastro()">Criar conta</button>
+            <p class="conta">Já possuí uma conta? <a href="login.html">Entrar</a></p>
         </div>
-        <nav class="kpis">
-
-            <div class="kpi">
-                <p>Total de Usuários</p>
-                <span class="dados">3</span>
-            </div>
-
-            <div class="kpi">
-                <p>Quizzes Respondidos</p>
-                <span class="dados">10</span>
-            </div>
-
-            <div class="kpi">
-                <p>Quiz Mais Popular</p>
-                <span class="dados">3</span>
-            </div>
-
-            <div class="kpi">
-                <p>Idade Média</p>
-                <span class="dados">10</span>
-            </div>
-
-        </nav>
     </main>
 </body>
 
