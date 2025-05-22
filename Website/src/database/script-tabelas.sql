@@ -17,7 +17,9 @@ create table usuario(
 select * from usuario;
 
 insert into usuario values
-(DEFAULT, 'mateus','mateus@gmail.com','sla','masculino',1,'1111-11-11','intermediario');
+(DEFAULT, 'klsfkdfs','mateus@gmail.com','sla','masculino',0,'1','intermediario');
+
+
 
 CREATE TABLE QUIZ(
     idRegistro INT PRIMARY KEY AUTO_INCREMENT,
@@ -46,10 +48,10 @@ select * from usuario;
 
 
 -- quantidade de usuario
-SELECT COUNT(idusuario) from usuario where cargo = 0;
+SELECT COUNT(idusuario) as usuarios from usuario where cargo = 0;
 
 --publico feminino e masculino 
-select COUNT(idusuario) from usuario where sexo = 'feminino';
+select COUNT(idusuario) as feminino from usuario where sexo = 'feminino';
 select COUNT(idusuario) from usuario where sexo = 'masculino';
 
 -- média de acertos e erros
@@ -66,3 +68,4 @@ SELECT idQuiz, COUNT(*) FROM QUIZ GROUP BY idQuiz ORDER BY COUNT(*) DESC LIMIT 1
 
 porcentagem geral de acertos e erros dos quiz
 SELECT SUM(acertos) AS total_acertos, SUM(erros) AS total_erros FROM quiz where idquiz = 1;
+
