@@ -108,11 +108,12 @@
                     <div class="textoGrafico">
                         <h3>Porcentagem do público</h3>
                         <p>Masculino</p>
-                        <span>10</span>
-                        <p>Femino</p>
-                        <span>20</span>
+                        <span>5</span>
+                        <p>Feminino</p>
+                        <span>3</span>
                     </div>
                 </div>
+
                 <div class="caixas_grafico">
                     <canvas class="VizuGrafico" id="GraficofezQuiz"></canvas>
                     <div class="textoGrafico">
@@ -142,17 +143,17 @@
 
             <div class="kpi">
                 <p>Quizzes Respondidos</p>
-                <span class="dados">10</span>
+                <span class="dados" id="span_quizzes"></span>
             </div>
 
             <div class="kpi">
                 <p>Quiz Mais Popular</p>
-                <span class="dados">3</span>
+                <span class="dados" id="span_popular"></span>
             </div>
 
             <div class="kpi">
                 <p>Idade Média</p>
-                <span class="dados">10</span>
+                <span class="dados" id="span_media"></span>
             </div>
 
         </nav>
@@ -162,15 +163,66 @@
 </html>
 
 <script>
-
-    var qntUsuario = 0
-
     window.onload = () => {
-        setInterval(buscarDados, 100)
+        setInterval(buscarUsuarios, 2000)
+        setInterval(buscarQuizzes, 2000)
+        setInterval(buscarQuizPopular, 2000)
+        setInterval(buscarMedia, 2000)
+
+        setInterval(buscarPublico, 200)
+        setInterval(buscarRealizacoes, 200)
+        setInterval(buscarQuantidadeQuiz, 200)
+        setInterval(buscarQuantidadeNivel, 200)
     }
 
-    function buscarDados() {
-        fetch(`/dashboard/listar`, {
+
+    // variaveis globais para a dashboard
+    var usuariosTotais = 0
+
+    var feminino = 1;
+    var masculino = 1;
+
+    var realizou = 1;
+    var naoRealizou = 1;
+
+    var QntQuiz1 = 0.1;
+    var QntQuiz2 = 0.1;
+    var QntQuiz3 = 0.1;
+
+    var iniciante = 1
+    var intermediario = 1
+    var experiente = 1
+
+    //BUSCA DE DADOS DAS KPIs
+    function buscarUsuarios() {
+        fetch(`/dashboard/listarUsuarios`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar usuarios");
+                }
+                return response.json();
+            })
+
+            .then(dashs => {
+                const dadoUsuario = document.getElementById("span_usuarios");
+                usuarios = dadoUsuario
+                dadoUsuario.innerHTML = "";
+
+                dashs.forEach(dados => {
+
+                    usuariosTotais = dados.usuarios
+                    dadoUsuario.innerHTML = dados.usuarios
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+    }
+
+    function buscarQuizzes() {
+        fetch(`/dashboard/listarQuizzes`, {
             method: 'GET'
         })
             .then(response => {
@@ -181,11 +233,59 @@
             })
 
             .then(dashs => {
-                const dadoUsuario = document.getElementById("span_usuarios");
-                dadoUsuario.innerHTML = "";
+                const dadosQuizzes = document.getElementById("span_quizzes");
+                dadosQuizzes.innerHTML = "";
 
                 dashs.forEach(dados => {
-                    dadoUsuario.innerHTML += `${dados.usuarios}`
+                    dadosQuizzes.innerHTML += `${dados.quizzes}`
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+    }
+
+    function buscarQuizPopular() {
+        fetch(`/dashboard/listarQuizPopular`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar sensores");
+                }
+                return response.json();
+            })
+
+            .then(dashs => {
+                const dadosPopular = document.getElementById("span_popular");
+                dadosPopular.innerHTML = "";
+
+                dashs.forEach(dados => {
+                    dadosPopular.innerHTML += `${dados.idQuiz}`
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+    }
+
+    function buscarMedia() {
+        fetch(`/dashboard/listarMedia`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar sensores");
+                }
+                return response.json();
+            })
+
+            .then(dashs => {
+                const dadosMedia = document.getElementById("span_media");
+                dadosMedia.innerHTML = "";
+
+                dashs.forEach(dados => {
+                    dadosMedia.innerHTML += `${dados.media}`
                 });
             })
             .catch(error => {
@@ -194,15 +294,20 @@
     }
 
 
-    const Graficopublico = document.getElementById('Graficopublico');
 
-    new Chart(Graficopublico, {
+
+
+
+    //BUSCA DE DADOS DOS GRÁFICOS
+
+    const Graficopublico = document.getElementById('Graficopublico');
+    const Publico = new Chart(Graficopublico, {
         type: 'doughnut',
         data: {
             labels: ['Masculino', 'Feminino'],
             datasets: [{
                 label: 'Sexo',
-                data: [19, 19],
+                data: [masculino, feminino],
                 borderWidth: 0
             }]
         },
@@ -211,14 +316,60 @@
         }
     });
 
-    const GraficofezQuiz = document.getElementById('GraficofezQuiz');
-    new Chart(GraficofezQuiz, {
+    function buscarPublico() {
+        fetch(`/dashboard/listarFeminino`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar feminino");
+                }
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    feminino = dados.feminino
+
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+
+        fetch(`/dashboard/listarMasculino`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar masculino");
+                }
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    masculino = dados.masculino
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+
+        Publico.data.datasets[0].data = [feminino, masculino];
+        Publico.update();
+    }
+
+
+
+
+
+    const GraficoQuiz = document.getElementById('GraficofezQuiz');
+    const Quiz = new Chart(GraficoQuiz, {
         type: 'doughnut',
         data: {
-            labels: ['Respondeu', 'Não respondeu'],
+            labels: ['Realizou', 'Não Relizou'],
             datasets: [{
-                label: 'Realizou',
-                data: [19, 19],
+                label: 'Sexo',
+                data: [realizou, naoRealizou],
                 borderWidth: 0
             }]
         },
@@ -227,42 +378,52 @@
         }
     });
 
-    const GraficoQntQuiz = document.getElementById('GraficoQntQuiz').getContext('2d');
-    new Chart(GraficoQntQuiz, {
-        type: 'bar',
-        data: {
-            labels: ['Quiz 1', 'Quiz 2', 'Quiz 3'],
-            datasets: [{
-                data: [10, 20, 15],
-                backgroundColor: ['#3498db', '#2ecc71', '#e74c3c']
-            }]
-        },
-        options: {
-            responsive: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                title: {
-                    display: true,
-                    text: 'Quantidade de realização de cada Quiz',
-                    font: {
-                        size: 18
-                    }
+    function buscarRealizacoes() {
+        fetch(`/dashboard/listarQntFeitos`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar realizados");
                 }
-            },
-            scales: {
-                y: {
-                    grid: {
-                        display: false
-                    }
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    realizou = dados.realizados;
+
+
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+
+        fetch(`/dashboard/listarUsuarios`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar Não feitos");
                 }
-            }
-        }
-    });
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    naoRealizou = (dados.usuarios) - realizou;
+
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+
+        Quiz.data.datasets[0].data = [realizou, naoRealizou];
+        Quiz.update();
+    }
 
     const Graficonivel = document.getElementById('Graficonivel').getContext('2d');
-    new Chart(Graficonivel, {
+    const QntNivel = new Chart(Graficonivel, {
         type: 'bar',
         data: {
             labels: ['Experiente', 'Intermédiario', 'Novato'],
@@ -295,6 +456,159 @@
         }
     });
 
+    function buscarQuantidadeNivel() {
+        fetch(`/dashboard/listarIniciante`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar quiz1");
+                }
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    iniciante = dados.iniciante
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
 
-    // exibirHistorico
+        fetch(`/dashboard/listarIntermediario`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar quiz1");
+                }
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    intermediario = dados.intermediario
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+
+        fetch(`/dashboard/listarExperiente`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar quiz1");
+                }
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    experiente = dados.experiente
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+
+        QntNivel.data.datasets[0].data = [experiente, intermediario, iniciante];
+        QntNivel.update();
+    }
+
+
+
+    const GraficoQntQuiz = document.getElementById('GraficoQntQuiz').getContext('2d');
+    const QntQuiz = new Chart(GraficoQntQuiz, {
+        type: 'bar',
+        data: {
+            labels: ['Quiz 1', 'Quiz 2', 'Quiz 3'],
+            datasets: [{
+                data: [QntQuiz1, QntQuiz1, QntQuiz1],
+                backgroundColor: ['#3498db', '#2ecc71', '#e74c3c']
+            }]
+        },
+        options: {
+            responsive: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: 'Quantidade de realização de cada Quiz',
+                    font: {
+                        size: 18
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+
+    function buscarQuantidadeQuiz() {
+        fetch(`/dashboard/listarQuiz1`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar quiz1");
+                }
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    QntQuiz1 = dados.QntQuiz1
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+
+        fetch(`/dashboard/listarQuiz2`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar quiz1");
+                }
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    QntQuiz2 = dados.QntQuiz2
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+
+        fetch(`/dashboard/listarQuiz3`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar quiz1");
+                }
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    QntQuiz3 = dados.QntQuiz3
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+
+        QntQuiz.data.datasets[0].data = [QntQuiz1, QntQuiz2, QntQuiz3];
+        QntQuiz.update();
+    }
+
+
 </script>

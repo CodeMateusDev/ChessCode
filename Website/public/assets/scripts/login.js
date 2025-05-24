@@ -9,7 +9,7 @@ function entrar() {
     fetch("/usuarios/autenticar", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json" 
+            "Content-Type": "application/json"
         },
         body: JSON.stringify({
             emailServer: emailVar,
@@ -28,15 +28,13 @@ function entrar() {
                 sessionStorage.NOME_USUARIO = json.nome;
                 sessionStorage.ID_USUARIO = json.id;
                 sessionStorage.CARGO = json.cargo;
-                
+
                 document.getElementById('aviso2').style.display = 'flex'
 
                 setTimeout(() => {
                     window.location = "index.html";
                 }, "2000");
             });
-
-
         } else {
 
             console.log("Houve um erro ao tentar realizar o login!");
