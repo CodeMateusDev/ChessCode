@@ -7,13 +7,17 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="assets/styles/dashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
 </head>
 
 <body>
     <aside>
         <ul>
-            <img id="logo" src="assets/img/LOGO.svg" alt="">
-
+            <div class="vindo">
+                <p>Bem-vindo</p>
+                <span id="span_nome"></span>
+            </div>
             <button id="selecionado" class="select-aside" onclick="window.location = 'dashboard.html'">
                 <svg class="icone" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision"
                     text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd"
@@ -22,7 +26,7 @@
                         d="M210.48 160.8c0-14.61 11.84-26.46 26.45-26.46s26.45 11.85 26.45 26.46v110.88l73.34 32.24c13.36 5.88 19.42 21.47 13.54 34.82-5.88 13.35-21.47 19.41-34.82 13.54l-87.8-38.6c-10.03-3.76-17.16-13.43-17.16-24.77V160.8zM5.4 168.54c-.76-2.25-1.23-4.64-1.36-7.13l-4-73.49c-.75-14.55 10.45-26.95 25-27.69 14.55-.75 26.95 10.45 27.69 25l.74 13.6a254.258 254.258 0 0136.81-38.32c17.97-15.16 38.38-28.09 61.01-38.18 64.67-28.85 134.85-28.78 196.02-5.35 60.55 23.2 112.36 69.27 141.4 132.83.77 1.38 1.42 2.84 1.94 4.36 27.86 64.06 27.53 133.33 4.37 193.81-23.2 60.55-69.27 112.36-132.83 141.39a26.24 26.24 0 01-12.89 3.35c-14.61 0-26.45-11.84-26.45-26.45 0-11.5 7.34-21.28 17.59-24.92 7.69-3.53 15.06-7.47 22.09-11.8.8-.66 1.65-1.28 2.55-1.86 11.33-7.32 22.1-15.7 31.84-25.04.64-.61 1.31-1.19 2-1.72 20.66-20.5 36.48-45.06 46.71-71.76 18.66-48.7 18.77-104.46-4.1-155.72l-.01-.03C418.65 122.16 377.13 85 328.5 66.37c-48.7-18.65-104.46-18.76-155.72 4.1a203.616 203.616 0 00-48.4 30.33c-9.86 8.32-18.8 17.46-26.75 27.29l3.45-.43c14.49-1.77 27.68 8.55 29.45 23.04 1.77 14.49-8.55 27.68-23.04 29.45l-73.06 9c-13.66 1.66-26.16-7.41-29.03-20.61zM283.49 511.5c20.88-2.34 30.84-26.93 17.46-43.16-5.71-6.93-14.39-10.34-23.29-9.42-15.56 1.75-31.13 1.72-46.68-.13-9.34-1.11-18.45 2.72-24.19 10.17-12.36 16.43-2.55 39.77 17.82 42.35 19.58 2.34 39.28 2.39 58.88.19zm-168.74-40.67c7.92 5.26 17.77 5.86 26.32 1.74 18.29-9.06 19.97-34.41 3.01-45.76-12.81-8.45-25.14-18.96-35.61-30.16-9.58-10.2-25.28-11.25-36.11-2.39a26.436 26.436 0 00-2.55 38.5c13.34 14.2 28.66 27.34 44.94 38.07zM10.93 331.97c2.92 9.44 10.72 16.32 20.41 18.18 19.54 3.63 36.01-14.84 30.13-33.82-4.66-15-7.49-30.26-8.64-45.93-1.36-18.33-20.21-29.62-37.06-22.33C5.5 252.72-.69 262.86.06 274.14c1.42 19.66 5.02 39 10.87 57.83z" />
                 </svg>
                 <div class="caixa">
-                    <p></p>Geral
+                    <p>Geral</p>
                 </div>
             </button>
 
@@ -56,12 +60,12 @@
             </button>
 
 
-            <button class="select-aside"" onclick="window.location = 'quiz3.html'">
-                <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision"
-                    text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd"
-                    clip-rule="evenodd" viewBox="0 0 511.999 463.377">
-                    <path
-                        d="M289.639 9.137c12.411 7.25 23.763 18.883 33.037 34.913l.97 1.813 1.118 1.941 174.174 302.48c33.712 56.407-1.203 113.774-66.174 112.973v.12H73.485c-.895 0-1.78-.04-2.657-.112-59.104-.799-86.277-54.995-61.909-106.852.842-1.805 1.816-3.475 2.816-5.201L189.482 43.959l-.053-.032c9.22-15.786 20.717-27.457 33.411-34.805C243.788-3 268.711-3.086 289.639 9.137zM255.7 339.203c13.04 0 23.612 10.571 23.612 23.612 0 13.041-10.572 23.613-23.612 23.613-13.041 0-23.613-10.572-23.613-23.613s10.572-23.612 23.613-23.612zm17.639-35.379c-.794 19.906-34.506 19.931-35.278-.006-3.41-34.108-12.129-111.541-11.853-143.591.284-9.874 8.469-15.724 18.939-17.955 3.231-.686 6.781-1.024 10.357-1.019 3.595.008 7.153.362 10.387 1.051 10.818 2.303 19.309 8.392 19.309 18.446l-.043 1.005-11.818 142.069zM37.596 369.821L216.864 59.942c21.738-37.211 56.225-38.289 78.376 0l176.298 306.166c17.177 28.285 10.04 66.236-38.774 65.488H73.485c-33.017.756-52.841-25.695-35.889-61.775z" />
+            <button class="select-aside"" onclick=" window.location='quiz3.html'">
+                <svg xmlns=" http://www.w3.org/2000/svg" shape-rendering="geometricPrecision"
+                text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd"
+                clip-rule="evenodd" viewBox="0 0 511.999 463.377">
+                <path
+                    d="M289.639 9.137c12.411 7.25 23.763 18.883 33.037 34.913l.97 1.813 1.118 1.941 174.174 302.48c33.712 56.407-1.203 113.774-66.174 112.973v.12H73.485c-.895 0-1.78-.04-2.657-.112-59.104-.799-86.277-54.995-61.909-106.852.842-1.805 1.816-3.475 2.816-5.201L189.482 43.959l-.053-.032c9.22-15.786 20.717-27.457 33.411-34.805C243.788-3 268.711-3.086 289.639 9.137zM255.7 339.203c13.04 0 23.612 10.571 23.612 23.612 0 13.041-10.572 23.613-23.612 23.613-13.041 0-23.613-10.572-23.613-23.613s10.572-23.612 23.613-23.612zm17.639-35.379c-.794 19.906-34.506 19.931-35.278-.006-3.41-34.108-12.129-111.541-11.853-143.591.284-9.874 8.469-15.724 18.939-17.955 3.231-.686 6.781-1.024 10.357-1.019 3.595.008 7.153.362 10.387 1.051 10.818 2.303 19.309 8.392 19.309 18.446l-.043 1.005-11.818 142.069zM37.596 369.821L216.864 59.942c21.738-37.211 56.225-38.289 78.376 0l176.298 306.166c17.177 28.285 10.04 66.236-38.774 65.488H73.485c-33.017.756-52.841-25.695-35.889-61.775z" />
                 </svg>
                 <div class="caixa">
                     <p>Quiz 3 </p>
@@ -108,11 +112,12 @@
                     <div class="textoGrafico">
                         <h3>Porcentagem do público</h3>
                         <p>Masculino</p>
-                        <span>10</span>
-                        <p>Femino</p>
-                        <span>20</span>
+                        <span>5</span>
+                        <p>Feminino</p>
+                        <span>3</span>
                     </div>
                 </div>
+
                 <div class="caixas_grafico">
                     <canvas class="VizuGrafico" id="GraficofezQuiz"></canvas>
                     <div class="textoGrafico">
@@ -137,22 +142,22 @@
 
             <div class="kpi">
                 <p>Total de Usuários</p>
-                <span class="dados">3</span>
+                <span class="dados" id="span_usuarios"></span>
             </div>
 
             <div class="kpi">
                 <p>Quizzes Respondidos</p>
-                <span class="dados">10</span>
+                <span class="dados" id="span_quizzes"></span>
             </div>
 
             <div class="kpi">
                 <p>Quiz Mais Popular</p>
-                <span class="dados">3</span>
+                <span class="dados" id="span_popular"></span>
             </div>
 
             <div class="kpi">
                 <p>Idade Média</p>
-                <span class="dados">10</span>
+                <span class="dados" id="span_media"></span>
             </div>
 
         </nav>
@@ -162,78 +167,321 @@
 </html>
 
 <script>
-    const Graficopublico = document.getElementById('Graficopublico');
+    var nome = sessionStorage.NOME_USUARIO
 
-    new Chart(Graficopublico, {
+    window.onload = () => {
+        setInterval(buscarUsuarios, 2000)
+        setInterval(buscarQuizzes, 2000)
+        setInterval(buscarQuizPopular, 2000)
+        setInterval(buscarMedia, 2000)
+
+        setInterval(buscarPublico, 200)
+        setInterval(buscarRealizacoes, 200)
+        setInterval(buscarQuantidadeQuiz, 200)
+        setInterval(buscarQuantidadeNivel, 200)
+
+        span_nome.innerHTML = nome
+    }
+
+
+    // variaveis globais para a dashboard
+    var usuariosTotais = 0
+
+    var feminino = 0.1;
+    var masculino = 0.1;
+
+    var realizou = 0.1;
+    var naoRealizou = 1.1;
+
+    var QntQuiz1 = 0.1;
+    var QntQuiz2 = 0.1;
+    var QntQuiz3 = 0.1;
+
+    var iniciante = 0.1
+    var intermediario = 0.1
+    var experiente = 0.1
+
+    function porcentagem(arredondar) {
+        return (arredondar / usuariosTotais) * 100
+
+    }
+
+    //BUSCA DE DADOS DAS KPIs
+    function buscarUsuarios() {
+        fetch(`/dashboard/listarUsuarios`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar usuarios");
+                }
+                return response.json();
+            })
+
+            .then(dashs => {
+                const dadoUsuario = document.getElementById("span_usuarios");
+                usuarios = dadoUsuario
+                dadoUsuario.innerHTML = "";
+
+                dashs.forEach(dados => {
+
+                    usuariosTotais = dados.usuarios
+                    dadoUsuario.innerHTML = dados.usuarios
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+    }
+
+    function buscarQuizzes() {
+        fetch(`/dashboard/listarQuizzes`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar sensores");
+                }
+                return response.json();
+            })
+
+            .then(dashs => {
+                const dadosQuizzes = document.getElementById("span_quizzes");
+                dadosQuizzes.innerHTML = "";
+
+                dashs.forEach(dados => {
+                    dadosQuizzes.innerHTML += `${dados.quizzes}`
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+    }
+
+    function buscarQuizPopular() {
+        fetch(`/dashboard/listarQuizPopular`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar sensores");
+                }
+                return response.json();
+            })
+
+            .then(dashs => {
+                const dadosPopular = document.getElementById("span_popular");
+                dadosPopular.innerHTML = "";
+
+                dashs.forEach(dados => {
+                    dadosPopular.innerHTML += `${dados.idQuiz}`
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+    }
+
+    function buscarMedia() {
+        fetch(`/dashboard/listarMedia`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar sensores");
+                }
+                return response.json();
+            })
+
+            .then(dashs => {
+                const dadosMedia = document.getElementById("span_media");
+                dadosMedia.innerHTML = "";
+
+                dashs.forEach(dados => {
+                    dadosMedia.innerHTML += `${dados.media}`
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+    }
+
+
+
+
+
+
+    //BUSCA DE DADOS DOS GRÁFICOS
+
+    const Graficopublico = document.getElementById('Graficopublico');
+    const Publico = new Chart(Graficopublico, {
         type: 'doughnut',
         data: {
             labels: ['Masculino', 'Feminino'],
             datasets: [{
                 label: 'Sexo',
-                data: [19, 19],
+                data: [masculino, feminino],
+                backgroundColor: ['#3498db', '#e91e63'],
                 borderWidth: 0
-            }]
-        },
-        options: {
-            responsive: false,
-        }
-    });
-
-    const GraficofezQuiz = document.getElementById('GraficofezQuiz');
-    new Chart(GraficofezQuiz, {
-        type: 'doughnut',
-        data: {
-            labels: ['Respondeu', 'Não respondeu'],
-            datasets: [{
-                label: 'Realizou',
-                data: [19, 19],
-                borderWidth: 0
-            }]
-        },
-        options: {
-            responsive: false,
-        }
-    });
-
-    const GraficoQntQuiz = document.getElementById('GraficoQntQuiz').getContext('2d');
-    new Chart(GraficoQntQuiz, {
-        type: 'bar',
-        data: {
-            labels: ['Quiz 1', 'Quiz 2', 'Quiz 3'],
-            datasets: [{
-                data: [10, 20, 15],
-                backgroundColor: ['#3498db', '#2ecc71', '#e74c3c']
             }]
         },
         options: {
             responsive: false,
             plugins: {
-                legend: {
-                    display: false
-                },
-                title: {
-                    display: true,
-                    text: 'Quantidade de realização de cada Quiz',
+                datalabels: {
+                    color: '#fff',
                     font: {
-                        size: 18
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    grid: {
-                        display: false
-                    }
+                        weight: 'bold',
+                        size: 14
+                    },
+                    formatter: (value) => `${value}%`
+                },
+                legend: {
+                    display: true,
+                    position: 'top'
                 }
             }
-        }
+        },
+        plugins: [ChartDataLabels]
     });
 
+
+    function buscarPublico() {
+        fetch(`/dashboard/listarFeminino`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar feminino");
+                }
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    feminino = dados.feminino
+
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+
+        fetch(`/dashboard/listarMasculino`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar masculino");
+                }
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    masculino = dados.masculino
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+
+        var total = masculino + feminino
+        var porcentagemMasculino = (masculino / total) * 100
+        var porcentagemFeminino = (feminino / total) * 100
+
+        Publico.data.datasets[0].data = [porcentagemMasculino, porcentagemFeminino];
+        Publico.update();
+    }
+
+
+
+
+
+    const GraficoQuiz = document.getElementById('GraficofezQuiz');
+    const Quiz = new Chart(GraficoQuiz, {
+        type: 'doughnut',
+        data: {
+            labels: ['Realizou', 'Não Realizou'],
+            datasets: [{
+                label: 'Fez Quiz',
+                data: [realizou, naoRealizou],
+                backgroundColor: ['#2ecc71', '#e74c3c'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: false,
+            plugins: {
+                datalabels: {
+                    color: '#fff',
+                    font: {
+                        weight: 'bold',
+                        size: 14
+                    },
+                    formatter: (value) => `${value}%`
+                },
+                legend: {
+                    display: true,
+                    position: 'top'
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
+
+
+    function buscarRealizacoes() {
+        fetch(`/dashboard/listarQntFeitos`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar realizados");
+                }
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    realizou = dados.realizados;
+
+
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+
+        fetch(`/dashboard/listarUsuarios`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar Não feitos");
+                }
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    naoRealizou = (dados.usuarios) - realizou;
+
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+
+        var total = realizou + naoRealizou
+        var porcentagemRealizou = (realizou / total) * 100
+        var porcentagemNaoRealizou = (naoRealizou / total) * 100
+
+        Quiz.data.datasets[0].data = [porcentagemRealizou, porcentagemNaoRealizou];
+        Quiz.update();
+    }
+
     const Graficonivel = document.getElementById('Graficonivel').getContext('2d');
-    new Chart(Graficonivel, {
+    const QntNivel = new Chart(Graficonivel, {
         type: 'bar',
         data: {
-            labels: ['Experiente', 'Intermédiario', 'Novato'],
+            labels: ['Experiente', 'Intermédiario', 'Iniciante'],
             datasets: [{
                 data: [10, 20, 15],
                 backgroundColor: ['#3498db', '#2ecc71', '#e74c3c']
@@ -242,6 +490,14 @@
         options: {
             responsive: false,
             plugins: {
+                datalabels: {
+                    color: '#fff',
+                    font: {
+                        weight: 'bold',
+                        size: 14
+                    },
+                    formatter: (value) => `${value}`
+                },
                 legend: {
                     display: false
                 },
@@ -260,8 +516,173 @@
                     }
                 }
             }
-        }
+        },
+        plugins: [ChartDataLabels]
+
     });
+
+    function buscarQuantidadeNivel() {
+        fetch(`/dashboard/listarIniciante`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar quiz1");
+                }
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    iniciante = dados.iniciante
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+
+        fetch(`/dashboard/listarIntermediario`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar quiz1");
+                }
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    intermediario = dados.intermediario
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+
+        fetch(`/dashboard/listarExperiente`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar quiz1");
+                }
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    experiente = dados.experiente
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+
+        QntNivel.data.datasets[0].data = [experiente, intermediario, iniciante];
+        QntNivel.update();
+    }
+
+
+
+    const GraficoQntQuiz = document.getElementById('GraficoQntQuiz').getContext('2d');
+    const QntQuiz = new Chart(GraficoQntQuiz, {
+        type: 'bar',
+        data: {
+            labels: ['Quiz 1', 'Quiz 2', 'Quiz 3'],
+            datasets: [{
+                data: [QntQuiz1, QntQuiz1, QntQuiz1],
+                backgroundColor: ['#3498db', '#2ecc71', '#e74c3c']
+            }]
+        },
+        options: {
+            responsive: false,
+            plugins: {
+                datalabels: {
+                    color: '#fff',
+                    font: {
+                        weight: 'bold',
+                        size: 14
+                    },
+                    formatter: (value) => `${value}`
+                },
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: 'Quantidade de realização de cada Quiz',
+                    font: {
+                        size: 18
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
+
+    function buscarQuantidadeQuiz() {
+        fetch(`/dashboard/listarQuiz1`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar quiz1");
+                }
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    QntQuiz1 = dados.QntQuiz1
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+
+        fetch(`/dashboard/listarQuiz2`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar quiz1");
+                }
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    QntQuiz2 = dados.QntQuiz2
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+
+        fetch(`/dashboard/listarQuiz3`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar quiz1");
+                }
+                return response.json();
+            })
+            .then(dashs => {
+                dashs.forEach(dados => {
+                    QntQuiz3 = dados.QntQuiz3
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+
+        QntQuiz.data.datasets[0].data = [QntQuiz1, QntQuiz2, QntQuiz3];
+        QntQuiz.update();
+    }
 
 
 </script>
