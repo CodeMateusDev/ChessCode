@@ -109,13 +109,6 @@
             <div class="linha">
                 <div class="caixas_grafico">
                     <canvas class="VizuGrafico" id="Graficopublico"></canvas>
-                    <div class="textoGrafico">
-                        <h3>Porcentagem do público</h3>
-                        <p>Masculino</p>
-                        <span>5</span>
-                        <p>Feminino</p>
-                        <span>3</span>
-                    </div>
                 </div>
 
                 <div class="caixas_grafico">
@@ -141,24 +134,25 @@
         <nav class="kpis">
 
             <div class="kpi">
-                <p>Total de Usuários</p>
-                <span class="dados" id="span_usuarios"></span>
+                <p>Tentativas Realizadas</p>
+                <span class="dados" id="span_tentativas"></span>
             </div>
 
             <div class="kpi">
-                <p>Quizzes Respondidos</p>
-                <span class="dados" id="span_quizzes"></span>
+                <p>Média de acertos</p>
+                <span class="dados" id="span_acertos"></span>
             </div>
 
             <div class="kpi">
-                <p>Quiz Mais Popular</p>
-                <span class="dados" id="span_popular"></span>
+                <p>Média de erros</p>
+                <span class="dados" id="span_erros"></span>
             </div>
 
             <div class="kpi">
-                <p>Idade Média</p>
-                <span class="dados" id="span_media"></span>
+                <p>Média de tempo</p>
+                <span class="dados" id="span_tempo"></span>
             </div>
+
 
         </nav>
     </main>
@@ -170,10 +164,10 @@
     var nome = sessionStorage.NOME_USUARIO
 
     window.onload = () => {
-        setInterval(buscarUsuarios, 2000)
-        setInterval(buscarQuizzes, 2000)
-        setInterval(buscarQuizPopular, 2000)
-        setInterval(buscarMedia, 2000)
+        setInterval(buscarTentativas, 2000)
+        setInterval(buscarAcertos, 2000)
+        setInterval(buscarErros, 2000)
+        setInterval(buscarTempo, 2000)
 
         setInterval(buscarPublico, 200)
         setInterval(buscarRealizacoes, 200)
@@ -183,10 +177,14 @@
         span_nome.innerHTML = nome
     }
 
+    function ativar(n) {
+        var minutos = Math.floor(n / 60);
+        var segundos = n % 60;
+        return `${minutos}:${segundos.toString().padStart(2, '0')}`;
+    }
+
 
     // variaveis globais para a dashboard
-    var usuariosTotais = 0
-
     var feminino = 0.1;
     var masculino = 0.1;
 
@@ -201,32 +199,26 @@
     var intermediario = 0.1
     var experiente = 0.1
 
-    function porcentagem(arredondar) {
-        return (arredondar / usuariosTotais) * 100
-
-    }
 
     //BUSCA DE DADOS DAS KPIs
-    function buscarUsuarios() {
-        fetch(`/dashboard/listarUsuarios`, {
+    function buscarTentativas() {
+        fetch(`/dashQuiz/listarTentativas`, {
             method: 'GET'
         })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error("Erro ao buscar usuarios");
+                    throw new Error("Erro ao buscar tentativas");
                 }
                 return response.json();
             })
 
             .then(dashs => {
-                const dadoUsuario = document.getElementById("span_usuarios");
-                usuarios = dadoUsuario
-                dadoUsuario.innerHTML = "";
+                const dadoTentativa = document.getElementById("span_tentativas");
+                dadoTentativa.innerHTML = "";
 
                 dashs.forEach(dados => {
 
-                    usuariosTotais = dados.usuarios
-                    dadoUsuario.innerHTML = dados.usuarios
+                    dadoTentativa.innerHTML = dados.tentativa
                 });
             })
             .catch(error => {
@@ -234,32 +226,8 @@
             });
     }
 
-    function buscarQuizzes() {
-        fetch(`/dashboard/listarQuizzes`, {
-            method: 'GET'
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Erro ao buscar sensores");
-                }
-                return response.json();
-            })
-
-            .then(dashs => {
-                const dadosQuizzes = document.getElementById("span_quizzes");
-                dadosQuizzes.innerHTML = "";
-
-                dashs.forEach(dados => {
-                    dadosQuizzes.innerHTML += `${dados.quizzes}`
-                });
-            })
-            .catch(error => {
-                console.error("Erro ao buscar dados:", error);
-            });
-    }
-
-    function buscarQuizPopular() {
-        fetch(`/dashboard/listarQuizPopular`, {
+    function buscarAcertos() {
+        fetch(`/dashQuiz/listarAcertos`, {
             method: 'GET'
         })
             .then(response => {
@@ -270,11 +238,11 @@
             })
 
             .then(dashs => {
-                const dadosPopular = document.getElementById("span_popular");
-                dadosPopular.innerHTML = "";
+                const dadosAcertos = document.getElementById("span_acertos");
+                dadosAcertos.innerHTML = "";
 
                 dashs.forEach(dados => {
-                    dadosPopular.innerHTML += `${dados.idQuiz}`
+                    dadosAcertos.innerHTML += `${dados.acertos}`
                 });
             })
             .catch(error => {
@@ -282,8 +250,32 @@
             });
     }
 
-    function buscarMedia() {
-        fetch(`/dashboard/listarMedia`, {
+    function buscarTempo() {
+        fetch(`/dashQuiz/listarTempo`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar tempo");
+                }
+                return response.json();
+            })
+
+            .then(dashs => {
+                const dadosTempo = document.getElementById("span_tempo");
+                dadosTempo.innerHTML = "";
+                dashs.forEach(dados => {
+
+                    dadosTempo.innerHTML = ativar(dados.tempo)
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+    }
+
+    function buscarErros() {
+        fetch(`/dashQuiz/listarErros`, {
             method: 'GET'
         })
             .then(response => {
@@ -294,23 +286,17 @@
             })
 
             .then(dashs => {
-                const dadosMedia = document.getElementById("span_media");
-                dadosMedia.innerHTML = "";
+                const dadosErros = document.getElementById("span_erros");
+                dadosErros.innerHTML = "";
 
                 dashs.forEach(dados => {
-                    dadosMedia.innerHTML += `${dados.media}`
+                    dadosErros.innerHTML += `${dados.erros}`
                 });
             })
             .catch(error => {
                 console.error("Erro ao buscar dados:", error);
             });
     }
-
-
-
-
-
-
     //BUSCA DE DADOS DOS GRÁFICOS
 
     const Graficopublico = document.getElementById('Graficopublico');
@@ -339,6 +325,13 @@
                 legend: {
                     display: true,
                     position: 'top'
+                },
+                title: {
+                    display: true,
+                    text: 'Porcentagem de acertos do sexo feminino',
+                    font: {
+                        size: 18
+                    }
                 }
             }
         },
@@ -347,7 +340,7 @@
 
 
     function buscarPublico() {
-        fetch(`/dashboard/listarFeminino`, {
+        fetch(`/dashQuiz/listarFeminino`, {
             method: 'GET'
         })
             .then(response => {
@@ -366,7 +359,7 @@
                 console.error("Erro ao buscar dados:", error);
             });
 
-        fetch(`/dashboard/listarMasculino`, {
+        fetch(`/dashQuiz/listarMasculino`, {
             method: 'GET'
         })
             .then(response => {
@@ -391,10 +384,6 @@
         Publico.data.datasets[0].data = [porcentagemMasculino, porcentagemFeminino];
         Publico.update();
     }
-
-
-
-
 
     const GraficoQuiz = document.getElementById('GraficofezQuiz');
     const Quiz = new Chart(GraficoQuiz, {
@@ -430,7 +419,7 @@
 
 
     function buscarRealizacoes() {
-        fetch(`/dashboard/listarQntFeitos`, {
+        fetch(`/dashQuiz/listarQntFeitos`, {
             method: 'GET'
         })
             .then(response => {
@@ -450,7 +439,7 @@
                 console.error("Erro ao buscar dados:", error);
             });
 
-        fetch(`/dashboard/listarUsuarios`, {
+        fetch(`/dashQuiz/listarUsuarios`, {
             method: 'GET'
         })
             .then(response => {
@@ -522,7 +511,7 @@
     });
 
     function buscarQuantidadeNivel() {
-        fetch(`/dashboard/listarIniciante`, {
+        fetch(`/dashQuiz/listarIniciante`, {
             method: 'GET'
         })
             .then(response => {
@@ -540,7 +529,7 @@
                 console.error("Erro ao buscar dados:", error);
             });
 
-        fetch(`/dashboard/listarIntermediario`, {
+        fetch(`/dashQuiz/listarIntermediario`, {
             method: 'GET'
         })
             .then(response => {
@@ -558,7 +547,7 @@
                 console.error("Erro ao buscar dados:", error);
             });
 
-        fetch(`/dashboard/listarExperiente`, {
+        fetch(`/dashQuiz/listarExperiente`, {
             method: 'GET'
         })
             .then(response => {
@@ -626,7 +615,7 @@
     });
 
     function buscarQuantidadeQuiz() {
-        fetch(`/dashboard/listarQuiz1`, {
+        fetch(`/dashQuiz/listarQuiz1`, {
             method: 'GET'
         })
             .then(response => {
@@ -644,7 +633,7 @@
                 console.error("Erro ao buscar dados:", error);
             });
 
-        fetch(`/dashboard/listarQuiz2`, {
+        fetch(`/dashQuiz/listarQuiz2`, {
             method: 'GET'
         })
             .then(response => {
@@ -662,7 +651,7 @@
                 console.error("Erro ao buscar dados:", error);
             });
 
-        fetch(`/dashboard/listarQuiz3`, {
+        fetch(`/dashQuiz/listarQuiz3`, {
             method: 'GET'
         })
             .then(response => {

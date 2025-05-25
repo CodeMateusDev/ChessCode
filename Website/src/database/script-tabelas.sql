@@ -101,3 +101,11 @@ SELECT count(idregistro) as QntQuiz1 from quiz where idQuiz = 1;
 
 SELECT COUNT(nivel) as iniciante from usuario where nivel = 'Experiente';
 
+select avg(acertos) from quiz join usuario on idusuario = fkusuario  where idQuiz = 1 and sexo = 'feminino';
+
+select avg(acertos) from quiz join usuario on idusuario = fkusuario  where idQuiz = 1 and sexo = 'masculino';
+
+select avg(acertos) from quiz where idQuiz = 1;
+select avg(erros) from quiz where idQuiz = 1;
+
+SELECT sum(tempo) from quiz where idQuiz = 1;
