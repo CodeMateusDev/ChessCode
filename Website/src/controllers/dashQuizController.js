@@ -48,24 +48,24 @@ function listarMasculino(req, res) {
     })
 }
 
-function listarQntFeitos(req, res) {
-    dashQuizModel.listarQntFeitos().then(function (resultado) {
+function listarQntIntermediario(req, res) {
+    dashQuizModel.listarQntIntermediario().then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
     })
 }
 
-function listarQuiz1(req, res) {
-    dashQuizModel.listarQuiz1().then(function (resultado) {
+function listarQntIniciante(req, res) {
+    dashQuizModel.listarQntIniciante().then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
     })
 }
 
-function listarQuiz2(req, res) {
-    dashQuizModel.listarQuiz2().then(function (resultado) {
+function listarQntExperiente(req, res) {
+    dashQuizModel.listarQntExperiente().then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
@@ -111,9 +111,9 @@ module.exports = {
     listarTempo,
     listarFeminino,
     listarMasculino,
-    listarQntFeitos,
-    listarQuiz1,
-    listarQuiz2,
+    listarQntIntermediario,
+    listarQntIniciante,
+    listarQntExperiente,
     listarQuiz3,
     listarIniciante,
     listarIntermediario,

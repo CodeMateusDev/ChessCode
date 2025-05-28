@@ -27,16 +27,16 @@ router.get("/listarMasculino", function (req, res) {
     dashQuizController.listarMasculino(req, res);
 });
 
-router.get("/listarQntFeitos", function (req, res) {
-    dashQuizController.listarQntFeitos(req, res);
+router.get("/listarQntIntermediario", function (req, res) {
+    dashQuizController.listarQntIntermediario(req, res);
 });
 
-router.get("/listarQuiz1", function (req, res) {
-    dashQuizController.listarQuiz1(req, res);
+router.get("/listarQntIniciante", function (req, res) {
+    dashQuizController.listarQntIniciante(req, res);
 });
 
-router.get("/listarQuiz2", function (req, res) {
-    dashQuizController.listarQuiz2(req, res);
+router.get("/listarQntExperiente", function (req, res) {
+    dashQuizController.listarQntExperiente(req, res);
 });
 
 router.get("/listarQuiz3", function (req, res) {

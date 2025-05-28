@@ -18,7 +18,7 @@
                 <p>Bem-vindo</p>
                 <span id="span_nome"></span>
             </div>
-            <button id="selecionado" class="select-aside" onclick="window.location = 'dashboard.html'">
+            <button class="select-aside" onclick="window.location = 'dashboard.html'">
                 <svg class="icone" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision"
                     text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd"
                     clip-rule="evenodd" viewBox="0 0 512 513.11">
@@ -30,7 +30,7 @@
                 </div>
             </button>
 
-            <button class="select-aside" onclick="window.location = 'quiz1.html'">
+            <button id="selecionado" class="select-aside" onclick="window.location = 'quiz1.html'">
                 <svg class="icone" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision"
                     text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd"
                     clip-rule="evenodd" viewBox="0 0 512 513.11">
@@ -330,8 +330,9 @@
                     display: true,
                     text: 'Porcentagem de acertos do sexo feminino',
                     font: {
-                        size: 18
-                    }
+                        size: 20
+                    },
+                    color:'#'
                 }
             }
         },
@@ -419,7 +420,7 @@
 
 
     function buscarRealizacoes() {
-        fetch(`/dashQuiz/listarQntFeitos`, {
+        fetch(`/dashQuiz/listarQntNivel`, {
             method: 'GET'
         })
             .then(response => {
@@ -492,7 +493,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Quantidade de cada nível de usuario',
+                    text: 'Quantidade de realização de quiz por nível',
                     font: {
                         size: 18
                     }
@@ -511,7 +512,7 @@
     });
 
     function buscarQuantidadeNivel() {
-        fetch(`/dashQuiz/listarIniciante`, {
+        fetch(`/dashQuiz/listarQntIniciante`, {
             method: 'GET'
         })
             .then(response => {
@@ -529,7 +530,7 @@
                 console.error("Erro ao buscar dados:", error);
             });
 
-        fetch(`/dashQuiz/listarIntermediario`, {
+        fetch(`/dashQuiz/listarQntIntermediario`, {
             method: 'GET'
         })
             .then(response => {
@@ -547,7 +548,7 @@
                 console.error("Erro ao buscar dados:", error);
             });
 
-        fetch(`/dashQuiz/listarExperiente`, {
+        fetch(`/dashQuiz/listarQntExperiente`, {
             method: 'GET'
         })
             .then(response => {
@@ -597,7 +598,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Quantidade de realização de cada Quiz',
+                    text: 'STADS',
                     font: {
                         size: 18
                     }

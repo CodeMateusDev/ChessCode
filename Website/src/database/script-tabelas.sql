@@ -109,3 +109,17 @@ select avg(acertos) from quiz where idQuiz = 1;
 select avg(erros) from quiz where idQuiz = 1;
 
 SELECT sum(tempo) from quiz where idQuiz = 1;
+
+select count(idregistro) from quiz join usuario on idusuario = fkusuario  where nivel = 'intermediario' and idquiz = 1;
+
+    select count(idregistro) as intermediario from quiz join usuario on idusuario = fkusuario  where nivel = 'intermediario' and idquiz = 1;
+
+
+select count(idregistro) as iniciante from quiz join usuario on idusuario = fkusuario  where nivel = 'iniciante' and idquiz = 1;
+
+
+select count(idregistro) from quiz join usuario on idusuario = fkusuario  where nivel = 'intermediario' and idquiz = 2;
+
+select count(idregistro) from quiz join usuario on idusuario = fkusuario  where nivel = 'intermediario' and idquiz = 3;
+
+select count(idregistro) from quiz join usuario on idusuario = fkusuario  where nivel = 'intermediario' and idquiz = 3;
