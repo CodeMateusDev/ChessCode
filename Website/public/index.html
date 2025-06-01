@@ -17,8 +17,8 @@
         <div class="navegacao">
             <button id="select">História</button>
             <button>Campeões</button>
-            <button>Figuras Hitóricas</button>
-            <button onclick="analisar()">Quiz</button>
+            <button>Figuras Históricas</button>
+            <button id="quiz" onclick="analisar()">Quiz</button>
             <button id="dashboard" onclick="window.location = 'dashboard.html'">Dashboard</button>
         </div>
         <div class="acesso">
@@ -128,6 +128,7 @@
 
         if (id == 1) {
             document.getElementById('dashboard').style.display = 'flex'
+            document.getElementById('quiz').style.display = 'none'
         } else {
             document.getElementById('dashboard').style.display = 'none'
         }

@@ -56,6 +56,7 @@ aside .vindo {
     background-color: white;
     color: #000000;
     fill: black;
+
     svg path {
         fill: rgb(0, 0, 0);
         stroke: rgb(0, 0, 0);
@@ -192,6 +193,7 @@ aside svg {
 .textoGrafico {
     display: flex;
     flex-direction: column;
+    gap: 2vh;
 
     h3 {
         margin-top: -30%;
@@ -199,11 +201,22 @@ aside svg {
         text-align: center;
     }
 
-    p {
-        text-align: center;
+    .masculino {
+        border-left: 4px solid #3498db;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+        text-align: start;
+        margin-left: 10%;
+        padding-left: 4%;
     }
 
-    span {
-        align-self: center;
+    .feminino {
+        border-left: 4px solid rgb(255, 37, 168);
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+        text-align: start;
+        margin-left: 10%;
+        padding-left: 4%;
+
     }
 }

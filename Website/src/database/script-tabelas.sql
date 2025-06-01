@@ -1,3 +1,4 @@
+-- Active: 1747516402911@@127.0.0.1@3306@chesscode
 
 CREATE DATABASE chesscode;
 
@@ -14,16 +15,6 @@ create table usuario(
     nivel varchar(45)
 );
 
-
-
-select * from usuario;
-
-insert into usuario values
-(DEFAULT, 'slkfjhoifsoihfd','slkfjhoifsoihfd','slkfjhoifsoihfd','feminino',0,'10','experiente');
-
-
-
-
 CREATE TABLE QUIZ(
     idRegistro INT PRIMARY KEY AUTO_INCREMENT,
     idQuiz int,
@@ -36,8 +27,39 @@ CREATE TABLE QUIZ(
     Foreign Key (fkusuario) REFERENCES usuario(idusuario)
 );
 
+SELECT
+    COUNT (fkusuario) as respondeu,
+    COUNT(idRegistro) - COUNT(DISTINCT fkusuario) as naoRespondeu
+FROM usuario
+ JOIN quiz ON idusuario = fkusuario;
 
-  
+ select count(DISTINCT fkusuario) as respondeu
+ from usuario JOIN quiz ON idusuario = fkusuario;
+
+ SELECT COUNT(DISTINCT fkusuario) as realizados, COUNT(*) - COUNT(DISTINCT fkusuario) as naoRealizados FROM usuario LEFT JOIN quiz ON idusuario = fkusuario;
+
+insert into usuario values
+(DEFAULT,'wdads','wdads', 'wdads','masculino',1,10,'experiente');
+
+
+
+select count(idusuario) from usuario;
+
+select count(idusu)
+
+
+insert into usuario VALUES
+(DEFAULT,'admin','admin', 'admin','masculino',1,10,'experiente');
+INSERT into usuario values
+(DEFAULT,'asjdoidoiahdoisas','asjdoidoiahdoisas', 'asjdoidoiahdoisas','feminino',1,10,'Intermediario');
+
+select * from usuario;
+
+insert into usuario values
+(DEFAULT, 'slkfjhoifsoihfd','slkfjhoifsoihfd','slkfjhoifsoihfd','feminino',0,'10','experiente');
+
+
+
         INSERT INTO quiz (idQuiz, acertos, erros, fkusuario, tempo, porcentagem, dtRealizacao) 
 VALUES ('1', '1', '1', '21', '12', '12', CURDATE());
 
@@ -94,6 +116,8 @@ SELECT COUNT(DISTINCT fkusuario) FROM QUIZ where;
 
 SELECT * FROM quiz;
 
+select count(idusuario) from usuario;
+
 select * from usuario;
 
 -- quantidade quiz
@@ -123,3 +147,10 @@ select count(idregistro) from quiz join usuario on idusuario = fkusuario  where 
 select count(idregistro) from quiz join usuario on idusuario = fkusuario  where nivel = 'intermediario' and idquiz = 3;
 
 select count(idregistro) from quiz join usuario on idusuario = fkusuario  where nivel = 'intermediario' and idquiz = 3;
+
+
+select DISTINCT(idade) as idade, COUNT(idade) as quantidade  from usuario GROUP BY  idade ORDER BY count(idade)  limit 5 ;
+
+select count(idade) from usuario;
+
+select count(idusuario), count(DISTINCT idquiz) from usuario join quiz on idusuario = fkusuario;
