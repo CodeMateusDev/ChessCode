@@ -132,11 +132,14 @@
                 <div class="caixas_grafico">
                     <canvas class="VizuGrafico" id="GraficofezQuiz"></canvas>
                     <div class="textoGrafico">
-                        <h3>Porcentagem de usuario que responderam o quiz</h3>
-                        <p>Usuarios que responderam</p>
-                        <span id="qnt_responderam">10</span>
-                        <p>Usuarios que não responderam</p>
-                        <span id="qnt_nao_responderam">20</span>
+                        <div class="realizou">
+                            <p>Realizou</p>
+                            <span id="qnt_responderam">10</span>
+                        </div>
+                        <div class="naoRealizou">
+                            <p>Não realizou</p>
+                            <span id="qnt_nao_responderam">20</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -351,7 +354,6 @@
                         size: 18
                     }
                 }
-                
             }
         },
         plugins: [ChartDataLabels]
@@ -408,9 +410,9 @@
 
     const GraficoQuiz = document.getElementById('GraficofezQuiz');
     const Quiz = new Chart(GraficoQuiz, {
-        type: 'doughnut',
+        type: 'pie',
         data: {
-            labels: ['Realizou', 'Não Realizou'],
+            labels: false,
             datasets: [{
                 label: 'Fez Quiz',
                 data: [realizou, naoRealizou],
@@ -432,6 +434,14 @@
                 legend: {
                     display: true,
                     position: 'top'
+                },
+                title: {
+                    display: true,
+                    text: 'Participação dos usúarios',
+                    color:'black' ,
+                    font: {
+                        size: 18
+                    }
                 }
             }
         },

@@ -179,7 +179,6 @@ aside svg {
 }
 
 .VizuGrafico {
-    margin-left: 2%;
     width: 56%;
     height: 56%;
 }
@@ -217,6 +216,24 @@ aside svg {
         text-align: start;
         margin-left: 10%;
         padding-left: 4%;
+    }
 
+    .realizou {
+        border-left: 4px solid #2ecc71;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+        text-align: start;
+        margin-left: 8%;
+        padding-left: 4%;
+    }
+
+    .naoRealizou {
+        width: 99%;
+        border-left: 4px solid #e74c3c;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+        text-align: start;
+        margin-left: 8%;
+        padding-left: 4%;
     }
 }
