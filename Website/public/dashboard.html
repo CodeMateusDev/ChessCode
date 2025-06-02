@@ -349,7 +349,7 @@
                 title: {
                     display: true,
                     text: 'Porcentagem de público',
-                    color:'black' ,
+                    color: 'black',
                     font: {
                         size: 18
                     }
@@ -437,8 +437,8 @@
                 },
                 title: {
                     display: true,
-                    text: 'Participação dos usúarios',
-                    color:'black' ,
+                    text: 'Participação dos usuários no quiz',
+                    color: 'black',
                     font: {
                         size: 18
                     }
@@ -464,7 +464,7 @@
                     realizou = dados.realizados;
                     qnt_responderam.innerHTML = realizou
 
-                    naoRealizou = (usuariosTotais) - (dados.realizados) 
+                    naoRealizou = (usuariosTotais) - (dados.realizados)
                     qnt_nao_responderam.innerHTML = naoRealizou
 
                 });
@@ -488,6 +488,7 @@
             labels: ['Experiente', 'Intermédiario', 'Iniciante'],
             datasets: [{
                 data: [10, 20, 15],
+                borderRadius: 5,
                 backgroundColor: ['#3498db', '#2ecc71', '#e74c3c']
             }]
         },
@@ -516,13 +517,20 @@
             scales: {
                 y: {
                     grid: {
+                        display: true
+                    },
+                    ticks: {
+                        stepSize: 1
+                    }
+                },
+                x: {
+                    grid: {
                         display: false
                     }
                 }
             }
         },
         plugins: [ChartDataLabels]
-
     });
 
     function buscarQuantidadeNivel() {
@@ -592,6 +600,7 @@
         data: {
             labels: ['Quiz 1', 'Quiz 2', 'Quiz 3'],
             datasets: [{
+                borderRadius: 5,
                 data: [QntQuiz1, QntQuiz1, QntQuiz1],
                 backgroundColor: ['#3498db', '#2ecc71', '#e74c3c']
             }]
@@ -620,6 +629,14 @@
             },
             scales: {
                 y: {
+                    grid: {
+                        display: true
+                    },
+                    ticks: {
+                        stepSize: 1
+                    }
+                },
+                x: {
                     grid: {
                         display: false
                     }
