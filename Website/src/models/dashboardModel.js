@@ -10,7 +10,7 @@ function listarUsuarios() {
 
 function listarQuizzes() {
   var instrucao = `
-    SELECT COUNT(idRegistro) as quizzes from quiz;
+     SELECT COUNT(DISTINCT fkusuario, idQuiz) as quizzes FROM quiz;
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
@@ -58,7 +58,8 @@ function listarQntFeitos() {
 
 function listarQuiz1() {
   var instrucao = `
-      SELECT count(idregistro) as 'QntQuiz1' from quiz where idQuiz = 1; 
+      SELECT count(DISTINCT fkusuario) as 'QntQuiz1' from quiz where idQuiz = 1; 
+
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
@@ -66,7 +67,7 @@ function listarQuiz1() {
 
 function listarQuiz2() {
   var instrucao = `
-      SELECT count(idregistro) as 'QntQuiz2' from quiz where idQuiz = 2; 
+      SELECT count(DISTINCT fkusuario) as 'QntQuiz2' from quiz where idQuiz = 2; 
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
@@ -74,7 +75,7 @@ function listarQuiz2() {
 
 function listarQuiz3() {
   var instrucao = `
-      SELECT count(idregistro) as 'QntQuiz3' from quiz where idQuiz = 3; 
+      SELECT count(DISTINCT fkusuario) as 'QntQuiz3' from quiz where idQuiz = 3; 
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);

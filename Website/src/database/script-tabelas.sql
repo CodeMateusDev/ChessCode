@@ -154,3 +154,4 @@ select DISTINCT(idade) as idade, COUNT(idade) as quantidade  from usuario GROUP 
 select count(idade) from usuario;
 
 select count(idusuario), count(DISTINCT idquiz) from usuario join quiz on idusuario = fkusuario;
+     SELECT COUNT(DISTINCT fkusuario, idQuiz) AS realizacoes FROM quiz;

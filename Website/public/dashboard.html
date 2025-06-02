@@ -118,7 +118,6 @@
                 <div class="caixas_grafico">
                     <canvas class="VizuGrafico" id="Graficopublico"></canvas>
                     <div class="textoGrafico">
-                        <h3>Porcentagem do público</h3>
                         <div class="masculino">
                             <p>Masculino</p>
                             <span id="qnt_masculino">2</span>
@@ -325,7 +324,7 @@
     const Publico = new Chart(Graficopublico, {
         type: 'pie',
         data: {
-            labels: ['Masculino', 'Feminino'],
+            labels: false,
             datasets: [{
                 label: `Sexo: `,
                 data: [masculino, feminino],
@@ -344,10 +343,15 @@
                     },
                     formatter: (value) => `${value}%`
                 },
-                legend: {
+                title: {
                     display: true,
-                    position: 'top'
+                    text: 'Porcentagem de público',
+                    color:'black' ,
+                    font: {
+                        size: 18
+                    }
                 }
+                
             }
         },
         plugins: [ChartDataLabels]
@@ -598,7 +602,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Quantidade de realização de cada Quiz',
+                    text: 'Quantidade de realização de cada Quiz por usúario',
                     font: {
                         size: 18
                     }

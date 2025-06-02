@@ -241,7 +241,8 @@
                 dadosAcertos.innerHTML = "";
 
                 dashs.forEach(dados => {
-                    dadosAcertos.innerHTML += `${dados.acertos}`
+                    var certo = Math.round(dados.acertos)
+                    dadosAcertos.innerHTML = certo
                 });
             })
             .catch(error => {
