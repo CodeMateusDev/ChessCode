@@ -392,3 +392,11 @@ main .linha {
         overflow-wrap: break-word;
     }
 }
+
+footer{
+    width: 100%;
+    height: 40vh;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+}
