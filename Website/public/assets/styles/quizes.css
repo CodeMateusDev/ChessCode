@@ -301,33 +301,6 @@ section {
     font-size: 14px;
 }
 
-.txt_viveiro {
-
-    margin-left: 2%
-}
-
-.txt_sensor {
-
-    margin-left: 5%;
-
-}
-
-.txt_data {}
-
-.txt_ppm {
-
-    margin-right: 11%;
-
-}
-
-
-.txt_alerta {
-
-
-    margin-right: 4.8%;
-}
-
-
 .dados {
     display: flex;
     width: 100%;
@@ -368,4 +341,53 @@ section {
     font-weight: 500;
     font-size: 14px;
     color: #fff;
+}
+
+
+.historicoQuiz {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    text-align: center;
+}
+
+.historicoAcertos {
+    width: 10%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.historicoErros {
+    width: 10%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.historicoTempo {
+    width: 20%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.historicoPorcentagem {
+    width: 15%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.historicoRealizacao {
+    width: 30%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

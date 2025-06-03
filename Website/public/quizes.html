@@ -173,12 +173,12 @@
             <div class="scroll_historico">
                 <section>
                     <div class="legenda">
-                        <span>QUIZ</span>
-                        <span>ACERTOS</span>
-                        <span>ERROS</span>
-                        <span>TEMPO</span>
-                        <span>PORCENTAGEM</span>
-                        <span>REALIZAÇÃO</span>
+                        <span class="historicoQuiz">QUIZ</span>
+                        <span class="historicoAcertos">ACERTOS</span>
+                        <span class="historicoErros">ERROS</span>
+                        <span class="historicoTempo">TEMPO</span>
+                        <span class="historicoPorcentagem">PORCENTAGEM</span>
+                        <span class="historicoRealizacao">REALIZAÇÃO</span>
                     </div>
                     <div class="scroll" id="scroll">
                     </div>
@@ -533,13 +533,14 @@
 
                 historicos.forEach(historico => {
                     container.innerHTML += `<div class="dados">
-                            <span class="txt_viveiro">${historico.idQuiz}</span>
-                            <span class="txt_sensor">${historico.acertos}</span>
-                            <span class="txt_data">${historico.erros}</span>
-                            <span class="txt_ppm">${historico.tempo}</span>
-                            <span class="txt_alerta">${historico.porcentagem}</span>
-                            <span class="txt_alerta">${historico.dtRealizacao}</span>
+                            <span class="historicoQuiz">${historico.idQuiz}</span>
+                            <span class="historicoAcertos">${historico.acertos}</span>
+                            <span class="historicoErros">${historico.erros}</span>
+                            <span class="historicoTempo">${historico.tempo}</span>
+                            <span class="historicoPorcentagem">${historico.porcentagem}%</span>
+                            <span class="historicoRealizacao">${new Date(historico.dtRealizacao).toLocaleDateString("pt-BR")}</span>
                         </div>`
+
 
                     console.log(historico.tempo)
                 });
