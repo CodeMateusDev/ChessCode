@@ -10,7 +10,7 @@ function listarUsuarios() {
 
 function listarQuizzes() {
   var instrucao = `
-     SELECT COUNT(DISTINCT fkusuario, idQuiz) as quizzes FROM quiz;
+     SELECT COUNT(DISTINCT fkusuario, idQuiz) as quizzes FROM quiz join resultado on fkQuiz = idquiz join usuario on idusuario = fkusuario;
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
@@ -18,7 +18,7 @@ function listarQuizzes() {
 
 function listarQuizPopular() {
   var instrucao = `
-      SELECT idQuiz, COUNT(*) AS total FROM QUIZ GROUP BY idQuiz ORDER BY total DESC LIMIT 1;
+      select DISTINCT fkQuiz as idQuiz, COUNT(*) as total from resultado GROUP BY fkQuiz ORDER BY total DESC limit 1;
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
@@ -50,7 +50,7 @@ function listarMasculino() {
 
 function listarQntFeitos() {
   var instrucao = `
-    SELECT COUNT(DISTINCT fkusuario) as realizados, COUNT(*) - COUNT(DISTINCT fkusuario) as naoRealizados FROM usuario LEFT JOIN quiz ON idusuario = fkusuario;
+    SELECT COUNT(DISTINCT fkusuario) as realizados FROM usuario  JOIN resultado ON idusuario = fkusuario join quiz on idquiz = fkQuiz;
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
@@ -58,8 +58,7 @@ function listarQntFeitos() {
 
 function listarQuiz1() {
   var instrucao = `
-      SELECT count(DISTINCT fkusuario) as 'QntQuiz1' from quiz where idQuiz = 1; 
-
+      SELECT count(DISTINCT fkusuario) as 'QntQuiz1' from resultado join quiz on fkQuiz = idquiz where idQuiz = 1; 
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
@@ -67,7 +66,7 @@ function listarQuiz1() {
 
 function listarQuiz2() {
   var instrucao = `
-      SELECT count(DISTINCT fkusuario) as 'QntQuiz2' from quiz where idQuiz = 2; 
+      SELECT count(DISTINCT fkusuario) as 'QntQuiz2' from resultado join quiz on fkQuiz = idquiz where idQuiz = 2; 
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
@@ -75,7 +74,7 @@ function listarQuiz2() {
 
 function listarQuiz3() {
   var instrucao = `
-      SELECT count(DISTINCT fkusuario) as 'QntQuiz3' from quiz where idQuiz = 3; 
+      SELECT count(DISTINCT fkusuario) as 'QntQuiz3' from resultado join quiz on fkQuiz = idquiz where idQuiz = 3; 
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);

@@ -2,8 +2,7 @@ var database = require("../database/config")
 
 function listarTentativas() {
   var instrucao = `
-    select count(idregistro) as tentativa from quiz where idQuiz = 1;
-
+    select count(idResultado) as tentativa from quiz join resultado on fkQuiz = idquiz where idQuiz = 1;
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);

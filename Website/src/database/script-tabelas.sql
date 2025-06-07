@@ -35,6 +35,11 @@ CREATE TABLE quiz(
     dificuldade varchar(20)
 );
 
+insert into quiz VALUES
+(DEFAULT,'A história do xadrez', 'Fácil'),
+(DEFAULT,'Campeões e partidas marcantes', 'Médio'),
+(DEFAULT,'Estratégias e aberturas do xadrez','Díficil');
+
 CREATE TABLE QUIZ(
     idRegistro INT PRIMARY KEY AUTO_INCREMENT,
     idQuiz int,
@@ -47,30 +52,10 @@ CREATE TABLE QUIZ(
     Foreign Key (fkusuario) REFERENCES usuario(idusuario)
 );
 
-SELECT
-    COUNT (fkusuario) as respondeu,
-    COUNT(idRegistro) - COUNT(DISTINCT fkusuario) as naoRespondeu
-FROM usuario
- JOIN quiz ON idusuario = fkusuario;
-
- select count(DISTINCT fkusuario) as respondeu
- from usuario JOIN quiz ON idusuario = fkusuario;
-
- SELECT COUNT(DISTINCT fkusuario) as realizados, COUNT(*) - COUNT(DISTINCT fkusuario) as naoRealizados FROM usuario LEFT JOIN quiz ON idusuario = fkusuario;
-
-insert into usuario values
-(DEFAULT,'wdads','wdads', 'wdads','masculino',1,10,'experiente');
-
-
-
-select count(idusuario) from usuario;
-
-select count(idusu)
-
+SELECT count(DISTINCT fkusuario) as 'QntQuiz1' from resultado join quiz on fkQuiz = idquiz where idQuiz = 1; 
 
 insert into usuario VALUES
 (DEFAULT,'admin','admin', 'admin','masculino',1,10,'experiente');
-INSERT into usuario values
 (DEFAULT,'asjdoidoiahdoisas','asjdoidoiahdoisas', 'asjdoidoiahdoisas','feminino',1,10,'Intermediario');
 
 select * from usuario;
