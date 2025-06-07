@@ -4,15 +4,35 @@ CREATE DATABASE chesscode;
 
 USE chesscode;
 
+
 create table usuario(
     idusuario int primary key AUTO_INCREMENT,
-    nome VARCHAR(60) UNIQUE,
+    nome VARCHAR(40),
     email VARCHAR(100),
     senha VARCHAR(45),
     sexo VARCHAR(9),
     cargo VARCHAR(13),
     idade int,
     nivel varchar(45)
+);
+
+CREATE TABLE resultado(
+    idResultado INT PRIMARY KEY AUTO_INCREMENT,
+    acertos int,
+    erros int,
+    fkusuario int,
+    fkQuiz int,
+    tempo int,
+    porcentagem INT,
+    dtRealizacao date,
+    Foreign Key (fkquiz) REFERENCES quiz(idquiz),
+    Foreign Key (fkusuario) REFERENCES usuario(idusuario)
+);
+
+CREATE TABLE quiz(
+    idquiz int PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(40),
+    dificuldade varchar(20)
 );
 
 CREATE TABLE QUIZ(
@@ -155,3 +175,21 @@ select count(idade) from usuario;
 
 select count(idusuario), count(DISTINCT idquiz) from usuario join quiz on idusuario = fkusuario;
      SELECT COUNT(DISTINCT fkusuario, idQuiz) AS realizacoes FROM quiz;
+
+
+SELECT avg(acertos) from quiz join usuario on idusuario = fkusuario WHERE nivel = 'experiente' and `idQuiz` = 1;
+
+SELECT avg(acertos) from quiz join usuario on idusuario = fkusuario WHERE nivel = 'experiente' and `idQuiz` = 2;
+
+SELECT avg(acertos) from quiz join usuario on idusuario = fkusuario WHERE nivel = 'experiente' and `idQuiz` = 3;
+
+SELECT avg(acertos) from quiz join usuario on idusuario = fkusuario WHERE nivel = 'iniciante' and `idQuiz` = 1;
+
+SELECT avg(acertos) from quiz join usuario on idusuario = fkusuario WHERE nivel = 'iniciante' and `idQuiz` = 2;
+
+SELECT avg(acertos) from quiz join usuario on idusuario = fkusuario WHERE nivel = 'iniciante' and `idQuiz` = 3;
+
+
+
+SELECT * from quiz join usuario on idusuario = fkusuario WHERE nivel = 'experiente' and `idQuiz` = 1;
+
