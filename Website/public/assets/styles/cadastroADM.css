@@ -300,3 +300,14 @@ button {
   color: #fff;
 }
 
+aside .vindo {
+    position: relative;
+
+    width: 12vw;
+    font-size: 3vh;
+    top: -10vh;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+}
