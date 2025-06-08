@@ -78,17 +78,17 @@
         <div class="graficos">
             <div class="linha">
                 <div class="caixas_grafico">
-                    <canvas class="graficoLinha" id="GraficoMediaQuiz"></canvas>
+                    <canvas class="graficoLinha" id="GraficoRealizacoes"></canvas>
                 </div>
 
                 <div class="caixas_grafico">
-                    <canvas class="graficoLinha" id="GraficoQntIniciante"></canvas>
+                    <canvas class="graficoLinha" id="GraficoAcertosQuiz"></canvas>
 
                 </div>
             </div>
             <div class="linha">
                 <div class="caixas_grafico">
-                    <canvas class="graficoLinha" id="GraficoQntIntermediario"></canvas>
+                    <canvas class="graficoLinha" id="GraficoAcertoNivel"></canvas>
                 </div>
                 <div class="caixas_grafico">
                     <canvas class="graficoLinha" id="GraficoQntExperiente"></canvas>
@@ -97,7 +97,7 @@
         </div>
         <nav class="kpis">
             <div class="kpi">
-                <p>Quizzes Realzidos</p>
+                <p>Quizzes Realizados</p>
                 <span class="dados" id="span_tentativas"></span>
             </div>
 
@@ -107,8 +107,8 @@
             </div>
 
             <div class="kpi">
-                <p>Média de erros</p>
-                <span class="dados" id="span_erros"></span>
+                <p>Quiz mais popular</p>
+                <span class="dados" id="span_popular"></span>
             </div>
 
             <div class="kpi">
@@ -128,8 +128,21 @@
         span_nome.innerHTML = nome
 
         buscarTentativas()
+        buscarAcertos()
+        buscarPopular()
+        buscarTempo()
 
-        setInterval(buscarTentativas, 2000)
+        buscarRealizacoes()
+        buscarAcertosQuiz()
+
+
+        setInterval(buscarTentativas, 1000)
+        setInterval(buscarAcertos, 1000)
+        setInterval(buscarPopular, 1000)
+        setInterval(buscarTempo, 1000)
+
+        setInterval(buscarRealizacoes, 1000)
+        setInterval(buscarAcertosQuiz, 1000)
 
     }
 
@@ -139,24 +152,30 @@
         return `${minutos}:${segundos.toString().padStart(2, '0')}`;
     }
 
+    // apagar 
+    var QntQuiz1 = 0;
+    var iniciante = 0
+    var intermediario = 0
+    var experiente = 0
 
     // variaveis globais para a dashboard
-    var feminino = 0.1;
-    var masculino = 0.1;
 
-    var realizou = 0.1;
-    var naoRealizou = 1.1;
+    var rlzQuiz1 = 0;
+    var rlzQuiz2 = 0;
+    var rlzQuiz3 = 0;
 
-    var QntQuiz1 = 0.1;
-    var QntQuiz2 = 0.1;
-    var QntQuiz3 = 0.1;
+    var acertosQuiz1 = 0;
+    var acertosQuiz2 = 0;
+    var acertosQuiz3 = 0;
 
-    var iniciante = 0.1
-    var intermediario = 0.1
-    var experiente = 0.1
+    var acertosIniciante = 0;
+    var acertosIntermediario = 0;
+    var acertosExperiente = 0;
+
 
 
     //BUSCA DE DADOS DAS KPIs
+
     function buscarTentativas() {
         fetch(`/dashQuiz/listarTentativas`, {
             method: 'GET'
@@ -167,14 +186,8 @@
                 }
                 return response.json();
             })
-
-            .then(dashs => {
-                const dadoTentativa = document.getElementById("span_tentativas");
-                dadoTentativa.innerHTML = "";
-
-                dashs.forEach(dados => {
-                    dadoTentativa.innerHTML = dados.tentativa
-                });
+            .then(dados => {
+                span_tentativas.innerHTML = dados[0].tentativa
             })
             .catch(error => {
                 console.error("Erro ao buscar dados:", error);
@@ -192,14 +205,27 @@
                 return response.json();
             })
 
-            .then(dashs => {
-                const dadosAcertos = document.getElementById("span_acertos");
-                dadosAcertos.innerHTML = "";
+            .then(dados => {
+                span_acertos.innerHTML = dados[0].acertos
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+    }
 
-                dashs.forEach(dados => {
-                    var certo = Math.round(dados.acertos)
-                    dadosAcertos.innerHTML = certo
-                });
+    function buscarPopular() {
+        fetch(`/dashQuiz/listarPopular`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar sensores");
+                }
+                return response.json();
+            })
+
+            .then(dados => {
+                span_popular.innerHTML = `Quiz ${dados[0].popular}`
             })
             .catch(error => {
                 console.error("Erro ao buscar dados:", error);
@@ -217,37 +243,8 @@
                 return response.json();
             })
 
-            .then(dashs => {
-                const dadosTempo = document.getElementById("span_tempo");
-                dadosTempo.innerHTML = "";
-                dashs.forEach(dados => {
-
-                    dadosTempo.innerHTML = ativar(dados.tempo)
-                });
-            })
-            .catch(error => {
-                console.error("Erro ao buscar dados:", error);
-            });
-    }
-
-    function buscarErros() {
-        fetch(`/dashQuiz/listarErros`, {
-            method: 'GET'
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Erro ao buscar sensores");
-                }
-                return response.json();
-            })
-
-            .then(dashs => {
-                const dadosErros = document.getElementById("span_erros");
-                dadosErros.innerHTML = "";
-
-                dashs.forEach(dados => {
-                    dadosErros.innerHTML += `${dados.erros}`
-                });
+            .then(dados => {
+                span_tempo.innerHTML = ativar(dados[0].tempo)
             })
             .catch(error => {
                 console.error("Erro ao buscar dados:", error);
@@ -255,112 +252,13 @@
     }
 
     //BUSCA DE DADOS DOS GRÁFICOS
-    const GraficoMediaQuiz = document.getElementById('GraficoMediaQuiz').getContext('2d');
-    const QntMediaQuiz = new Chart(GraficoMediaQuiz, {
+    const GraficoRealizacoes = document.getElementById('GraficoRealizacoes').getContext('2d');
+    const QntRealizacoes = new Chart(GraficoRealizacoes, {
         type: 'bar',
         data: {
             labels: ['Quiz 1', 'Quiz 2', 'Quiz 3'],
             datasets: [{
-                data: [QntQuiz1, QntQuiz1, QntQuiz1],
-                backgroundColor: ['#3498db', '#2ecc71', '#e74c3c']
-            }]
-        },
-        options: {
-            responsive: false,
-            plugins: {
-                datalabels: {
-                    color: '#fff',
-                    font: {
-                        weight: 'bold',
-                        size: 14
-                    },
-                    formatter: (value) => `${value}`
-                },
-                legend: {
-                    display: false
-                },
-                title: {
-                    display: true,
-                    text: 'Média de acerto por quiz',
-                    font: {
-                        size: 18
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    grid: {
-                        display: true
-                    },
-                    ticks: {
-                        stepSize: 1
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false
-                    }
-                }
-            }
-        },
-        plugins: [ChartDataLabels]
-    });
-
-    function buscarRealizacoes() {
-        fetch(`/dashQuiz/listarQntNivel`, {
-            method: 'GET'
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Erro ao buscar realizados");
-                }
-                return response.json();
-            })
-            .then(dashs => {
-                dashs.forEach(dados => {
-                    realizou = dados.realizados;
-
-
-                });
-            })
-            .catch(error => {
-                console.error("Erro ao buscar dados:", error);
-            });
-
-        fetch(`/dashQuiz/listarUsuarios`, {
-            method: 'GET'
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Erro ao buscar Não feitos");
-                }
-                return response.json();
-            })
-            .then(dashs => {
-                dashs.forEach(dados => {
-                    naoRealizou = (dados.usuarios) - realizou;
-
-                });
-            })
-            .catch(error => {
-                console.error("Erro ao buscar dados:", error);
-            });
-
-        var total = realizou + naoRealizou
-        var porcentagemRealizou = (realizou / total) * 100
-        var porcentagemNaoRealizou = (naoRealizou / total) * 100
-
-        Acertos.data.datasets[0].data = [porcentagemRealizou, porcentagemNaoRealizou];
-        Acertos.update();
-    }
-
-    const GraficoQntIniciante = document.getElementById('GraficoQntIniciante').getContext('2d');
-    const QntQuizIniciante = new Chart(GraficoQntIniciante, {
-        type: 'bar',
-        data: {
-            labels: ['Quiz 1', 'Quiz 2', 'Quiz 3'],
-            datasets: [{
-                data: [QntQuiz1, QntQuiz1, QntQuiz1],
+                data: [rlzQuiz1, rlzQuiz2, rlzQuiz3],
                 backgroundColor: ['#3498db', '#2ecc71', '#e74c3c']
             }]
         },
@@ -405,13 +303,112 @@
         plugins: [ChartDataLabels]
     });
 
-    const GraficoQntIntermediario = document.getElementById('GraficoQntIntermediario').getContext('2d');
-    const QntQuizIntermediario = new Chart(GraficoQntIntermediario, {
+    function buscarRealizacoes() {
+        fetch(`/dashQuiz/listarRealizacoes`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar realizações");
+                }
+                return response.json();
+            })
+
+            .then(dados => {
+                rlzQuiz1 = dados[0].quiz1;
+                rlzQuiz2 = dados[0].quiz2;
+                rlzQuiz3 = dados[0].quiz3;
+
+                QntRealizacoes.data.datasets[0].data = [rlzQuiz1, rlzQuiz2, rlzQuiz3];
+                QntRealizacoes.update();
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+    }
+
+    const GraficoAcertosQuiz = document.getElementById('GraficoAcertosQuiz').getContext('2d');
+    const QntAcertosQuiz = new Chart(GraficoAcertosQuiz, {
         type: 'bar',
         data: {
             labels: ['Quiz 1', 'Quiz 2', 'Quiz 3'],
             datasets: [{
-                data: [QntQuiz1, QntQuiz1, QntQuiz1],
+                data: [acertosQuiz1, acertosQuiz2, acertosQuiz3],
+                backgroundColor: ['#3498db', '#2ecc71', '#e74c3c']
+            }]
+        },
+        options: {
+            responsive: false,
+            plugins: {
+                datalabels: {
+                    color: '#fff',
+                    font: {
+                        weight: 'bold',
+                        size: 14
+                    },
+                    formatter: (value) => `${value}`
+                },
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: 'Média de acerto por quiz',
+                    font: {
+                        size: 18
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    grid: {
+                        display: true
+                    },
+                    ticks: {
+                        stepSize: 1
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
+
+    function buscarAcertosQuiz() {
+        fetch(`/dashQuiz/buscarAcertosQuiz`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar realizações");
+                }
+                return response.json();
+            })
+
+            .then(dados => {
+                acertosQuiz1 = dados[0].quiz1;
+                acertosQuiz2 = dados[0].quiz2;
+                acertosQuiz3 = dados[0].quiz3;
+
+                QntAcertosQuiz.data.datasets[0].data = [acertosQuiz1, acertosQuiz2, acertosQuiz3];
+                QntAcertosQuiz.update();
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+    }
+
+    const GraficoAcertoNivel = document.getElementById('GraficoAcertoNivel').getContext('2d');
+    const QntAcertoNivel = new Chart(GraficoAcertoNivel, {
+        type: 'bar',
+        data: {
+            labels: ['Iniciante', 'Intermédiario', 'Experiente'],
+            datasets: [{
+                data: [acertosIniciante, acertosIntermediario, acertosExperiente],
                 backgroundColor: ['#3498db', '#2ecc71', '#e74c3c']
             }]
         },
@@ -565,8 +562,8 @@
                 console.error("Erro ao buscar dados:", error);
             });
 
-        GraficoQntIniciante.data.datasets[0].data = [QntQuiz1, QntQuiz2, QntQuiz3];
-        GraficoQntIniciante.update();
+        GraficoAcertosQuiz.data.datasets[0].data = [QntQuiz1, QntQuiz2, QntQuiz3];
+        GraficoAcertosQuiz.update();
     }
 
 

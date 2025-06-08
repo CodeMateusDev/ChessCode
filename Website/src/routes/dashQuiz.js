@@ -11,20 +11,21 @@ router.get("/listarAcertos", function (req, res) {
     dashQuizController.listarAcertos(req, res);
 });
 
-router.get("/listarErros", function (req, res) {
-    dashQuizController.listarErros(req, res);
+router.get("/listarPopular", function (req, res) {
+    dashQuizController.listarPopular(req, res);
 });
 
 router.get("/listarTempo", function (req, res) {
     dashQuizController.listarTempo(req, res);
 });
 
-router.get("/listarFeminino", function (req, res) {
-    dashQuizController.listarFeminino(req, res);
+
+router.get("/listarRealizacoes", function (req, res) {
+    dashQuizController.listarRealizacoes(req, res);
 });
 
-router.get("/listarMasculino", function (req, res) {
-    dashQuizController.listarMasculino(req, res);
+router.get("/buscarAcertosQuiz", function (req, res) {
+    dashQuizController.buscarAcertosQuiz(req, res);
 });
 
 router.get("/listarQntIntermediario", function (req, res) {

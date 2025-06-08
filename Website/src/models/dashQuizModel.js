@@ -10,15 +10,15 @@ function listarTentativas() {
 
 function listarAcertos() {
   var instrucao = `
-    select avg(acertos) as acertos from quiz where idQuiz = 1;
+    select ROUND(avg(acertos),0) as acertos from resultado ;
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
 }
 
-function listarErros() {
+function listarPopular() {
   var instrucao = `
-    select avg(erros) as erros from quiz where idQuiz = 1;
+    select fkquiz as popular,count(*) as dados from resultado group by fkquiz ORDER BY dados DESC limit 1;
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
@@ -26,27 +26,29 @@ function listarErros() {
 
 function listarTempo() {
   var instrucao = `
-
-  // SELECT sum(tempo) as tempo from quiz where idQuiz = 1;
-
-      
-SELECT sum(tempo) as tempo from resultado;
+    SELECT round(avg(tempo),0) as tempo from resultado;
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
 }
 
-function listarFeminino() {
+function listarRealizacoes() {
   var instrucao = `
-      select COUNT(idusuario) as feminino from usuario where sexo = 'feminino';
+    select 
+    (select count(idresultado) as 'qntQuiz1' from resultado where fkquiz = 1)as quiz1,
+    (select count(idresultado) as 'qntQuiz1' from resultado where fkquiz = 2) as quiz2,
+    (select count(idresultado) as 'qntQuiz1' from resultado where fkquiz = 3) as quiz3;
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
 }
 
-function listarMasculino() {
+function buscarAcertosQuiz() {
   var instrucao = `
-      select COUNT(idusuario) as masculino from usuario where sexo = 'masculino';
+      select 
+      (select round(avg (acertos), 0) from resultado where fkQuiz = 1)as quiz1,
+      (select round(avg (acertos), 0) from resultado where fkQuiz = 2) as quiz2,
+      (select round(avg (acertos), 0) from resultado where fkQuiz = 3) as quiz3;
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
@@ -117,10 +119,10 @@ function listarExperiente() {
 module.exports = {
   listarTentativas,
   listarAcertos,
-  listarErros,
+  listarPopular,
   listarTempo,
-  listarFeminino,
-  listarMasculino,
+  listarRealizacoes,
+  buscarAcertosQuiz,
   listarQntIntermediario,
   listarQntIniciante,
   listarQntExperiente,

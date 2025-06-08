@@ -16,8 +16,8 @@ function listarAcertos(req, res) {
     })
 }
 
-function listarErros(req, res) {
-    dashQuizModel.listarErros().then(function (resultado) {
+function listarPopular(req, res) {
+    dashQuizModel.listarPopular().then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
@@ -32,16 +32,16 @@ function listarTempo(req, res) {
     })
 }
 
-function listarFeminino(req, res) {
-    dashQuizModel.listarFeminino().then(function (resultado) {
+function listarRealizacoes(req, res) {
+    dashQuizModel.listarRealizacoes().then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
     })
 }
 
-function listarMasculino(req, res) {
-    dashQuizModel.listarMasculino().then(function (resultado) {
+function buscarAcertosQuiz(req, res) {
+    dashQuizModel.buscarAcertosQuiz().then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
@@ -107,10 +107,10 @@ function listarExperiente(req, res) {
 module.exports = {
     listarTentativas,
     listarAcertos,
-    listarErros,
+    listarPopular,
     listarTempo,
-    listarFeminino,
-    listarMasculino,
+    listarRealizacoes,
+    buscarAcertosQuiz,
     listarQntIntermediario,
     listarQntIniciante,
     listarQntExperiente,
