@@ -56,53 +56,14 @@ function buscarAcertosNivel(req, res) {
     })
 }
 
-function listarQntIniciante(req, res) {
-    dashQuizModel.listarQntIniciante().then(function (resultado) {
+function listarRealizacaoNivel(req, res) {
+    dashQuizModel.listarRealizacaoNivel().then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
     })
 }
 
-function listarQntExperiente(req, res) {
-    dashQuizModel.listarQntExperiente().then(function (resultado) {
-        res.status(200).json(resultado);
-    }).catch(function (erro) {
-        res.status(500).json(erro.sqlMessage);
-    })
-}
-
-function listarQuiz3(req, res) {
-    dashQuizModel.listarQuiz3().then(function (resultado) {
-        res.status(200).json(resultado);
-    }).catch(function (erro) {
-        res.status(500).json(erro.sqlMessage);
-    })
-}
-
-function listarIniciante(req, res) {
-    dashQuizModel.listarIniciante().then(function (resultado) {
-        res.status(200).json(resultado);
-    }).catch(function (erro) {
-        res.status(500).json(erro.sqlMessage);
-    })
-}
-
-function listarIntermediario(req, res) {
-    dashQuizModel.listarIntermediario().then(function (resultado) {
-        res.status(200).json(resultado);
-    }).catch(function (erro) {
-        res.status(500).json(erro.sqlMessage);
-    })
-}
-
-function listarExperiente(req, res) {
-    dashQuizModel.listarExperiente().then(function (resultado) {
-        res.status(200).json(resultado);
-    }).catch(function (erro) {
-        res.status(500).json(erro.sqlMessage);
-    })
-}
 
 module.exports = {
     listarTentativas,
@@ -112,11 +73,6 @@ module.exports = {
     listarRealizacoes,
     buscarAcertosQuiz,
     buscarAcertosNivel,
-    listarQntIniciante,
-    listarQntExperiente,
-    listarQuiz3,
-    listarIniciante,
-    listarIntermediario,
-    listarExperiente
+    listarRealizacaoNivel
 }
 

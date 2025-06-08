@@ -135,6 +135,7 @@
         buscarRealizacoes()
         buscarAcertosQuiz()
         buscarAcertosNivel()
+        buscarRealizacoesNivel()
 
 
         setInterval(buscarTentativas, 1000)
@@ -145,6 +146,7 @@
         setInterval(buscarRealizacoes, 1000)
         setInterval(buscarAcertosQuiz, 1000)
         setInterval(buscarAcertosNivel, 1000)
+        setInterval(buscarRealizacoesNivel, 1000)
     }
 
     function ativar(n) {
@@ -173,6 +175,9 @@
     var acertosIntermediario = 0;
     var acertosExperiente = 0;
 
+    var rlzIniciante = 0;
+    var rlzIntermediario = 0;
+    var rlzExperiente = 0;
 
 
     //BUSCA DE DADOS DAS KPIs
@@ -485,7 +490,7 @@
         data: {
             labels: ['Iniciante', 'intermediario', 'Experiente'],
             datasets: [{
-                data: [QntQuiz1, QntQuiz1, QntQuiz1],
+                data: [rlzIniciante,rlzIntermediario , rlzExperiente],
                 backgroundColor: ['#3498db', '#2ecc71', '#e74c3c']
             }]
         },
@@ -530,63 +535,28 @@
         plugins: [ChartDataLabels]
     });
 
-    function buscarQuantidadeQuiz() {
-        fetch(`/dashQuiz/listarQuiz1`, {
+    function buscarRealizacoesNivel() {
+        fetch(`/dashQuiz/listarRealizacaoNivel`, {
             method: 'GET'
         })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error("Erro ao buscar quiz1");
+                    throw new Error("Erro ao buscar realizações");
                 }
                 return response.json();
             })
-            .then(dashs => {
-                dashs.forEach(dados => {
-                    QntQuiz1 = dados.QntQuiz1
-                });
+
+            .then(dados => {
+                rlzIniciante = dados[0].iniciante;
+                rlzIntermediario = dados[0].intermediario;
+                rlzExperiente = dados[0].experiente;
+
+                QntRealizacoesNivel.data.datasets[0].data = [rlzIniciante, rlzIntermediario, rlzExperiente];
+                QntRealizacoesNivel.update();
             })
             .catch(error => {
                 console.error("Erro ao buscar dados:", error);
             });
-
-        fetch(`/dashQuiz/listarQuiz2`, {
-            method: 'GET'
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Erro ao buscar quiz1");
-                }
-                return response.json();
-            })
-            .then(dashs => {
-                dashs.forEach(dados => {
-                    QntQuiz2 = dados.QntQuiz2
-                });
-            })
-            .catch(error => {
-                console.error("Erro ao buscar dados:", error);
-            });
-
-        fetch(`/dashQuiz/listarQuiz3`, {
-            method: 'GET'
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Erro ao buscar quiz1");
-                }
-                return response.json();
-            })
-            .then(dashs => {
-                dashs.forEach(dados => {
-                    QntQuiz3 = dados.QntQuiz3
-                });
-            })
-            .catch(error => {
-                console.error("Erro ao buscar dados:", error);
-            });
-
-        GraficoAcertosQuiz.data.datasets[0].data = [QntQuiz1, QntQuiz2, QntQuiz3];
-        GraficoAcertosQuiz.update();
     }
 
 

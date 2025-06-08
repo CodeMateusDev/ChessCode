@@ -32,28 +32,8 @@ router.get("/buscarAcertosNivel", function (req, res) {
     dashQuizController.buscarAcertosNivel(req, res);
 });
 
-router.get("/listarQntIniciante", function (req, res) {
-    dashQuizController.listarQntIniciante(req, res);
-});
-
-router.get("/listarQntExperiente", function (req, res) {
-    dashQuizController.listarQntExperiente(req, res);
-});
-
-router.get("/listarQuiz3", function (req, res) {
-    dashQuizController.listarQuiz3(req, res);
-});
-
-router.get("/listarIniciante", function (req, res) {
-    dashQuizController.listarIniciante(req, res);
-});
-
-router.get("/listarIntermediario", function (req, res) {
-    dashQuizController.listarIntermediario(req, res);
-});
-
-router.get("/listarExperiente", function (req, res) {
-    dashQuizController.listarExperiente(req, res);
+router.get("/listarRealizacaoNivel", function (req, res) {
+    dashQuizController.listarRealizacaoNivel(req, res);
 });
 
 

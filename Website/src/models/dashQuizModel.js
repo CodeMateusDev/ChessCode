@@ -67,10 +67,10 @@ function buscarAcertosNivel() {
 
 function listarRealizacaoNivel() {
   var instrucao = `
-      select 
-(select count(idresultado) from resultado join usuario on fkusuario = idusuario where nivel = 'iniciante')as iniciante,
-(select count(idResultado) from resultado join usuario on fkusuario = idusuario where nivel = 'intermediario') as intermediario,
-(select count(idResultado) from resultado join usuario on fkusuario = idusuario where nivel = 'experiente') as experiente;
+    select 
+    (select count(idresultado) from resultado join usuario on fkusuario = idusuario where nivel = 'iniciante')as iniciante,
+    (select count(idResultado) from resultado join usuario on fkusuario = idusuario where nivel = 'intermediario') as intermediario,
+    (select count(idResultado) from resultado join usuario on fkusuario = idusuario where nivel = 'experiente') as experiente;
 
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
