@@ -54,67 +54,29 @@ function buscarAcertosQuiz() {
   return database.executar(instrucao);
 }
 
-function listarQntIntermediario() {
+function buscarAcertosNivel() {
   var instrucao = `
-    select count(idregistro) as intermediario from quiz join usuario on idusuario = fkusuario  where nivel = 'intermediario' and idquiz = 1;
+    select 
+    (select round(avg (acertos), 0) from resultado join usuario on fkusuario = idusuario where nivel = 'iniciante')as iniciante,
+    (select round(avg (acertos), 0) from resultado join usuario on fkusuario = idusuario where nivel = 'intermediario') as intermediario,
+    (select round(avg (acertos), 0) from resultado join usuario on fkusuario = idusuario where nivel = 'experiente') as experiente;
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
 }
 
-function listarQntIniciante() {
+function listarRealizacaoNivel() {
   var instrucao = `
-          select count(idregistro) as iniciante from quiz join usuario on idusuario = fkusuario  where nivel = 'iniciante' and idquiz = 1;
-    `;
-  console.log("Executando a instrução SQL: \n" + instrucao);
-  return database.executar(instrucao);
-}
-
-function listarQntExperiente() {
-  var instrucao = `
-          select count(idregistro) as experiente from quiz join usuario on idusuario = fkusuario  where nivel = 'experiente' and idquiz = 1;
-    `;
-  console.log("Executando a instrução SQL: \n" + instrucao);
-  return database.executar(instrucao);
-}
-
-function listarQuiz3() {
-  var instrucao = `
-      SELECT count(idregistro) as 'QntQuiz3' from quiz where idQuiz = 3; 
-    `;
-  console.log("Executando a instrução SQL: \n" + instrucao);
-  return database.executar(instrucao);
-}
-
-function listarIniciante() {
-  var instrucao = `
-
-    SELECT COUNT(nivel) as iniciante from usuario where nivel = 'iniciante';
+      select 
+(select count(idresultado) from resultado join usuario on fkusuario = idusuario where nivel = 'iniciante')as iniciante,
+(select count(idResultado) from resultado join usuario on fkusuario = idusuario where nivel = 'intermediario') as intermediario,
+(select count(idResultado) from resultado join usuario on fkusuario = idusuario where nivel = 'experiente') as experiente;
 
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
 }
 
-function listarIntermediario() {
-  var instrucao = `
-
-    SELECT COUNT(nivel) as intermediario from usuario where nivel = 'intermediario';
-
-    `;
-  console.log("Executando a instrução SQL: \n" + instrucao);
-  return database.executar(instrucao);
-}
-
-function listarExperiente() {
-  var instrucao = `
-
-    SELECT COUNT(nivel) as experiente from usuario where nivel = 'experiente';
-
-    `;
-  console.log("Executando a instrução SQL: \n" + instrucao);
-  return database.executar(instrucao);
-}
 
 module.exports = {
   listarTentativas,
@@ -123,11 +85,6 @@ module.exports = {
   listarTempo,
   listarRealizacoes,
   buscarAcertosQuiz,
-  listarQntIntermediario,
-  listarQntIniciante,
-  listarQntExperiente,
-  listarQuiz3,
-  listarIniciante,
-  listarIntermediario,
-  listarExperiente
+  buscarAcertosNivel,
+  listarRealizacaoNivel,
 };

@@ -48,8 +48,8 @@ function buscarAcertosQuiz(req, res) {
     })
 }
 
-function listarQntIntermediario(req, res) {
-    dashQuizModel.listarQntIntermediario().then(function (resultado) {
+function buscarAcertosNivel(req, res) {
+    dashQuizModel.buscarAcertosNivel().then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
@@ -111,7 +111,7 @@ module.exports = {
     listarTempo,
     listarRealizacoes,
     buscarAcertosQuiz,
-    listarQntIntermediario,
+    buscarAcertosNivel,
     listarQntIniciante,
     listarQntExperiente,
     listarQuiz3,

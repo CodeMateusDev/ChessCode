@@ -63,21 +63,17 @@ ORDER BY nome limit 5;
 
 
 -- media de acerto por quiz - quiz 1, quiz 2, quiz 3
-select 
-(select round(avg (acertos), 0) from resultado where fkQuiz = 1)as quiz1,
-(select round(avg (acertos), 0) from resultado where fkQuiz = 2) as quiz2,
-(select round(avg (acertos), 0) from resultado where fkQuiz = 3) as quiz3;
+
 
 select 
-(select count(idresultado) as 'qntQuiz1' from resultado where fkquiz = 1)as quiz1,
-(select count(idresultado) as 'qntQuiz1' from resultado where fkquiz = 2) as quiz2,
-(select count(idresultado) as 'qntQuiz1' from resultado where fkquiz = 3) as quiz3;
+(select count(idresultado) from resultado join usuario on fkusuario = idusuario where nivel = 'iniciante')as iniciante,
+(select count(idResultado) from resultado join usuario on fkusuario = idusuario where nivel = 'intermediario') as intermediario,
+(select count(idResultado) from resultado join usuario on fkusuario = idusuario where nivel = 'experiente') as experiente;
 
-
-
-select round(avg (acertos), 0) as quiz2 from resultado where fkquiz = 2;
-
-select round(avg (acertos), 0) as quiz3 from resultado where fkquiz = 3;
+select 
+      (select round(avg (acertos), 0) from resultado where fkQuiz = 1)as quiz1,
+      (select round(avg (acertos), 0) from resultado where fkQuiz = 2) as quiz2,
+      (select round(avg (acertos), 0) from resultado where fkQuiz = 3) as quiz3;
 
 
 --quantidade de realização por quiz
@@ -95,11 +91,12 @@ select round(avg (acertos), 0) from resultado join usuario on fkusuario = idusua
 
 --média de tempo por nível
 
-select ROUND(avg(tempo),0) from resultado join usuario on fkusuario = idusuario where nivel = 'iniciante';
+select COUNT(idResultado) from resultado join usuario on fkusuario = idusuario where nivel = 'iniciante';
 
-select ROUND(avg(tempo),0) from resultado join usuario on fkusuario = idusuario where nivel = 'intermediario';
+select COUNT(idResultado) from resultado join usuario on fkusuario = idusuario where nivel = 'intermediario';
 
-select ROUND(avg(tempo),0) from resultado join usuario on fkusuario = idusuario where nivel = 'experiente';
+select COUNT(idResultado) from resultado join usuario on fkusuario = idusuario where nivel = 'experiente';
+
 
 
 

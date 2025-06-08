@@ -91,7 +91,7 @@
                     <canvas class="graficoLinha" id="GraficoAcertoNivel"></canvas>
                 </div>
                 <div class="caixas_grafico">
-                    <canvas class="graficoLinha" id="GraficoQntExperiente"></canvas>
+                    <canvas class="graficoLinha" id="GraficoRealiacoesNivel"></canvas>
                 </div>
             </div>
         </div>
@@ -134,6 +134,7 @@
 
         buscarRealizacoes()
         buscarAcertosQuiz()
+        buscarAcertosNivel()
 
 
         setInterval(buscarTentativas, 1000)
@@ -143,7 +144,7 @@
 
         setInterval(buscarRealizacoes, 1000)
         setInterval(buscarAcertosQuiz, 1000)
-
+        setInterval(buscarAcertosNivel, 1000)
     }
 
     function ativar(n) {
@@ -453,12 +454,36 @@
         plugins: [ChartDataLabels]
     });
 
+    function buscarAcertosNivel() {
+        fetch(`/dashQuiz/buscarAcertosNivel`, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar realizações");
+                }
+                return response.json();
+            })
 
-    const GraficoQntExperiente = document.getElementById('GraficoQntExperiente').getContext('2d');
-    const QntQuizExperiente = new Chart(GraficoQntExperiente, {
+            .then(dados => {
+                acertosIniciante = dados[0].iniciante;
+                acertosIntermediario = dados[0].intermediario;
+                acertosExperiente = dados[0].experiente;
+
+                QntAcertoNivel.data.datasets[0].data = [acertosIniciante, acertosIntermediario, acertosExperiente];
+                QntAcertoNivel.update();
+            })
+            .catch(error => {
+                console.error("Erro ao buscar dados:", error);
+            });
+    }
+
+
+    const GraficoRealiacoesNivel = document.getElementById('GraficoRealiacoesNivel').getContext('2d');
+    const QntRealizacoesNivel = new Chart(GraficoRealiacoesNivel, {
         type: 'bar',
         data: {
-            labels: ['Quiz 1', 'Quiz 2', 'Quiz 3'],
+            labels: ['Iniciante', 'intermediario', 'Experiente'],
             datasets: [{
                 data: [QntQuiz1, QntQuiz1, QntQuiz1],
                 backgroundColor: ['#3498db', '#2ecc71', '#e74c3c']
@@ -480,7 +505,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'média de tempo por nível',
+                    text: 'Realizações por Nível',
                     font: {
                         size: 18
                     }
@@ -504,8 +529,6 @@
         },
         plugins: [ChartDataLabels]
     });
-
-
 
     function buscarQuantidadeQuiz() {
         fetch(`/dashQuiz/listarQuiz1`, {

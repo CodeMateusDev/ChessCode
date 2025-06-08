@@ -28,8 +28,8 @@ router.get("/buscarAcertosQuiz", function (req, res) {
     dashQuizController.buscarAcertosQuiz(req, res);
 });
 
-router.get("/listarQntIntermediario", function (req, res) {
-    dashQuizController.listarQntIntermediario(req, res);
+router.get("/buscarAcertosNivel", function (req, res) {
+    dashQuizController.buscarAcertosNivel(req, res);
 });
 
 router.get("/listarQntIniciante", function (req, res) {
