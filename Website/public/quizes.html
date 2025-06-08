@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exemplo - Quiz</title>
     <link rel="stylesheet" href="assets/styles/quizes.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 </head>
 
 
@@ -26,17 +28,15 @@
             </button>
 
             <button class="select-aside" id="quiz2" onclick="iniciarQuiz(listaDeQuestoes2,'quiz1','quiz3',2)">
-                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 328 328" xml:space="preserve">
-                    <g id="XMLID_455_">
-                        <path id="XMLID_458_"
-                            d="M15,286.75h125.596c19.246,24.348,49.031,40,82.404,40c57.897,0,105-47.103,105-105s-47.103-105-105-105 c-34.488,0-65.145,16.716-84.298,42.47c-7.763-1.628-15.694-2.47-23.702-2.47c-63.411,0-115,51.589-115,115 C0,280.034,6.716,286.75,15,286.75z M223,146.75c41.355,0,75,33.645,75,75s-33.645,75-75,75s-75-33.645-75-75 S181.645,146.75,223,146.75z" />
-                        <path id="XMLID_461_"
-                            d="M115,1.25c-34.602,0-62.751,28.15-62.751,62.751S80.398,126.75,115,126.75 c34.601,0,62.75-28.148,62.75-62.749S149.601,1.25,115,1.25z" />
-                        <path id="XMLID_462_"
-                            d="M193,236.75h15v15c0,8.284,6.716,15,15,15s15-6.716,15-15v-15h15c8.284,0,15-6.716,15-15s-6.716-15-15-15 h-15v-15c0-8.284-6.716-15-15-15s-15,6.716-15,15v15h-15c-8.284,0-15,6.716-15,15S184.716,236.75,193,236.75z" />
-                    </g>
+                <svg width="96" height="94" viewBox="0 0 96 94" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M46.5 75.9L38 72.6C31.2 69.9 26.7 63.4 26.7 56V50.7C26.7 43.4 32.4 37.5 39.6 37.1C41 34.3 43.8 32.3 47.2 32.3C48.1 29.6 48.8 26.6 49.1 22.9C50.3 2.1 30.8 0.6 25.4 0.5C24.7 0.5 24.2 1.2 24.4 1.9L26 7.9C26 7.9 20 8.2 16.8 14.7C13.7 21.1 4.8 23.8 3.3 27.7C1.9 31.7 5.1 37.1 7.3 37.9C10.5 38.9 19.4 32.8 21.8 31.9C24.2 30.9 24.8 33.1 12.5 48.6C1.8 62.1 10.2 68.2 12.5 69.6H9.6C4.5 69.6 0.5 73.6 0.5 78.6V83.4C0.5 84.3 1.2 84.9 2 84.9H44.8C45.9 82.4 48.1 80.4 50.9 79.7C48.7 77.8 47.3 76.7 46.5 75.9ZM22.1 16.8C22.1 15 23.6 13.5 25.4 13.5C27.3 13.5 28.8 15 28.8 16.8C28.8 18.7 27.3 20.1 25.4 20.1C23.6 20.1 22.1 18.7 22.1 16.8Z"
+                        fill="white" />
+                    <path
+                        d="M87.8998 43.0999H83.4998V40.9C83.4998 39.4 82.2998 38.2 80.7998 38.2H47.4998C45.9998 38.2 44.7998 39.4 44.7998 40.9V43.0999H40.3998C36.1998 43.0999 32.7998 46.5 32.7998 50.7V56C32.7998 60.9 35.7998 65.2 40.2998 67L49.9998 70.8C50.7998 71.9 55.0998 75.2999 57.4998 77.0999C58.4998 77.8999 59.0998 79.1 59.0998 80.3V83.5C59.0998 84.4 58.3998 85.1999 57.3998 85.1999H53.3998C51.4998 85.1999 49.9998 86.6999 49.9998 88.5999V92.1999C49.9998 92.8999 50.5998 93.5 51.2998 93.5H76.9998C77.6998 93.5 78.2998 92.8999 78.2998 92.1999V88.5999C78.2998 86.6999 76.7998 85.1999 74.8998 85.1999H70.8998C69.9998 85.1999 69.1998 84.5 69.1998 83.5V80.3C69.1998 79 69.7998 77.7999 70.7998 77.0999C73.1998 75.2999 77.4998 71.9 78.2998 70.8L87.9998 67C92.4998 65.2 95.4998 60.8 95.4998 56V50.7C95.4998 46.5 92.0998 43.0999 87.8998 43.0999ZM42.1998 62.0999C39.6998 61.0999 38.0998 58.7 38.0998 56V50.7C38.0998 49.5 39.0998 48.4 40.2998 48.4H44.6998V55C44.6998 58 45.1998 60.8999 46.0998 63.5999L42.1998 62.0999ZM73.7998 55.7L69.9998 59.2999C69.7998 59.3999 69.7998 59.7 69.7998 59.9L70.6998 65C70.8998 66 69.7998 66.8 68.8998 66.3L64.2998 63.8C64.0998 63.7 63.8998 63.7 63.6998 63.8L59.0998 66.3C58.1998 66.8 57.1998 66 57.2998 65L58.1998 59.9C58.1998 59.7 58.1998 59.4999 57.9998 59.2999L54.2998 55.7C53.5998 55 53.9998 53.7999 54.9998 53.5999L60.0998 52.9C60.2998 52.9 60.4998 52.7 60.5998 52.5L62.7998 47.7999C63.1998 46.8999 64.4998 46.8999 64.9998 47.7999L67.1998 52.5C67.2998 52.7 67.4998 52.8 67.6998 52.9L72.7998 53.5999C74.0998 53.7999 74.4998 55 73.7998 55.7ZM90.1998 56C90.1998 58.7 88.5998 61.0999 86.0998 62.0999L82.0998 63.6999C82.9998 60.9999 83.4998 58.0999 83.4998 55.0999V48.5H87.8998C89.0998 48.5 90.1998 49.4999 90.1998 50.7999V56Z"
+                        fill="white" />
                 </svg>
+
                 <div class="caixa">
                     <p>Quiz 2</p>
                 </div>
@@ -44,12 +44,12 @@
 
 
             <button class="select-aside" id="quiz3" onclick="iniciarQuiz(listaDeQuestoes3, 'quiz1','quiz2',3)">
-                <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision"
-                    text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd"
-                    clip-rule="evenodd" viewBox="0 0 511.999 463.377">
-                    <path
-                        d="M289.639 9.137c12.411 7.25 23.763 18.883 33.037 34.913l.97 1.813 1.118 1.941 174.174 302.48c33.712 56.407-1.203 113.774-66.174 112.973v.12H73.485c-.895 0-1.78-.04-2.657-.112-59.104-.799-86.277-54.995-61.909-106.852.842-1.805 1.816-3.475 2.816-5.201L189.482 43.959l-.053-.032c9.22-15.786 20.717-27.457 33.411-34.805C243.788-3 268.711-3.086 289.639 9.137zM255.7 339.203c13.04 0 23.612 10.571 23.612 23.612 0 13.041-10.572 23.613-23.612 23.613-13.041 0-23.613-10.572-23.613-23.613s10.572-23.612 23.613-23.612zm17.639-35.379c-.794 19.906-34.506 19.931-35.278-.006-3.41-34.108-12.129-111.541-11.853-143.591.284-9.874 8.469-15.724 18.939-17.955 3.231-.686 6.781-1.024 10.357-1.019 3.595.008 7.153.362 10.387 1.051 10.818 2.303 19.309 8.392 19.309 18.446l-.043 1.005-11.818 142.069zM37.596 369.821L216.864 59.942c21.738-37.211 56.225-38.289 78.376 0l176.298 306.166c17.177 28.285 10.04 66.236-38.774 65.488H73.485c-33.017.756-52.841-25.695-35.889-61.775z" />
+                <svg width="92" height="90" viewBox="0 0 92 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M84.1328 62.5661C85.0312 67.5505 86.3047 73.1051 87.9531 76.8671H89.7187C90.7968 76.8671 91.6718 77.7421 91.6718 78.8202V87.0624C91.6718 88.1405 90.7968 89.0155 89.7187 89.0155H63.1137C62.0356 89.0155 61.1606 88.1405 61.1606 87.0624V80.953H2.24656C1.16846 80.953 0.293457 80.078 0.293457 78.9999V2.90991C0.293457 1.83181 1.16846 0.956813 2.24656 0.956813H9.34816C10.4263 0.956813 11.3013 1.83181 11.3013 2.90991C11.3013 3.98801 10.4263 4.86301 9.34816 4.86301H4.19976V77.047H62.2938C62.5438 76.9298 62.8211 76.8673 63.1141 76.8673H64.8797C65.2586 76.0079 65.614 75.0548 65.9539 74.0353H8.90687C7.82877 74.0353 6.95377 73.1603 6.95377 72.0822V9.82822C6.95377 8.75012 7.82877 7.87512 8.90687 7.87512H71.1609C72.239 7.87512 73.114 8.75012 73.114 9.82822V34.0512C73.9968 33.8051 74.9148 33.6528 75.864 33.6098V4.85981H14.817C13.7389 4.85981 12.8639 3.98481 12.8639 2.90671C12.8639 1.82861 13.7389 0.953613 14.817 0.953613H77.817C78.8951 0.953613 79.7701 1.82861 79.7701 2.90671V34.0587C81.8482 34.6486 83.6998 35.7735 85.1685 37.2696C85.9224 38.0391 85.9107 39.2774 85.1411 40.0313C84.3716 40.7852 83.1333 40.7735 82.3794 40.004C81.6372 39.2462 80.7544 38.629 79.77 38.1993C78.7427 37.7501 77.6098 37.5 76.4184 37.5C76.2309 37.5 76.0473 37.5079 75.8637 37.5196C71.5121 37.8047 68.0707 41.4298 68.0707 45.8516C68.0707 48.3594 69.1801 50.6094 70.9301 52.1407H81.9101C83.664 50.6095 84.7695 48.3595 84.7695 45.8516C84.7695 45.168 84.6875 44.5078 84.5351 43.8711C84.2812 42.8242 84.9219 41.7656 85.9688 41.5117C87.0157 41.2578 88.0743 41.8984 88.3282 42.9453C88.5547 43.875 88.6758 44.8476 88.6758 45.8476C88.6758 48.4023 87.8907 50.7773 86.5508 52.7421C86.8828 53.0936 87.0899 53.5663 87.0899 54.0898V60.6093C87.0899 61.6874 86.2149 62.5624 85.1368 62.5624H84.1368L84.1328 62.5661ZM65.9258 53.2809H52.3598V70.1289H67.0828C67.7156 67.6601 68.2547 65.043 68.7 62.5664H67.7C66.6219 62.5664 65.7469 61.6914 65.7469 60.6133V54.0938C65.7469 53.8048 65.8094 53.5274 65.9226 53.2813L65.9258 53.2809ZM72.625 62.5661C71.7734 67.3395 70.5898 72.7651 69.0742 76.8671H83.7582C82.2426 72.7655 81.059 67.3437 80.2074 62.5661H72.625ZM83.18 58.6599V56.0466H69.653V58.6599H83.18ZM31.61 53.281V70.129H48.458V53.281H31.61ZM69.208 35.945V32.527H52.36V49.375H64.676C64.34 48.2578 64.1603 47.0742 64.1603 45.8516C64.1603 41.7813 66.1486 38.1758 69.2033 35.9454L69.208 35.945ZM27.704 53.281H10.856V70.129H27.704V53.281ZM52.36 28.625H69.208V11.777H52.36V28.625ZM48.4538 28.625V11.777H31.6058V28.625H48.4538ZM27.7038 11.777H10.8558V28.625H27.7038V11.777ZM86.7198 80.769H65.0638V80.9487V85.1049H87.7668V80.769H86.716L86.7198 80.769ZM27.7038 32.527H10.8558V49.375H27.7038V32.527ZM48.4538 32.527H31.6058V49.375H48.4538V32.527Z"
+                        fill="white" />
                 </svg>
+
                 <div class="caixa">
                     <p>Quiz 3 </p>
                 </div>
@@ -89,10 +89,11 @@
             </button>
         </ul>
     </aside>
-    <main id="usarquiz" style="height: 100vh; width: 84vw">
-        teste
+    <main id="usarquiz" class="inicioQuiz">
+
     </main>
     <main id="quiz">
+        <button onclick="finalizar()" class="btnConcluir">Desistir</button>
         <div class="aviso" id="aviso1">
             <div class="alerta_icone">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="24" fill="none">
@@ -106,13 +107,13 @@
 
         <div id="pontuacaoEJogo">
             <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
-                <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
-                    <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
-                    <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
+                <div style="display: none;" id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
+                    <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas">0</span></span>
+                    <span class="width-fit-content">Quantidade de erros: <span id="spanErradas">0</span></span>
                 </div>
                 <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
                     <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
-                        <span id="spanPontuacaoFinal">***</span>
+                        <span id="spanPontuacaoFinal"></span>/10
                     </span>
                     <span id="msgFinal" class="width-fit-content">***</span>
                 </div>
@@ -124,44 +125,47 @@
                     <span>Questão <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span></span>
                 </div>
 
-                <div id="perguntaDaQuestaoAtual" class="padding-8">
-                    <span id="spanQuestaoExibida" class="text-bold"></span>
+                <div style="display: flex; justify-content: space-between;">
+                    <p id="tituloQuiz">Tema: </p>
+                    <p class="textao">Dificuldade: <span id="dificuldade"></span></p>
                 </div>
 
-                <div id="infoAlternativas" class="padding-8">
-                    <span><em>Escolha uma opção dentre as abaixo:</em></span>
+                <div id="perguntaDaQuestaoAtual" class="padding-8">
+                    <span id="spanQuestaoExibida" class="text-bold"></span>
                 </div>
 
                 <div id="opcoes" class="flex-colunar padding-8">
                     <span>
                         <input style="display: none;" type="radio" id="primeiraOpcao" name="option" class="radio"
                             value="alternativaA" />
-                        <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+                        <label id="labelOpcaoUm" for="primeiraOpcao" class="option"><span class="bolinha">A</span>ㅤ<span
+                                id="testetexto1"></span></label>
                     </span>
                     <span>
                         <input style="display: none;" type="radio" id="segundaOpcao" name="option" class="radio"
                             value="alternativaB" />
-                        <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+                        <label id="labelOpcaoDois" for="segundaOpcao" class="option"><span
+                                class="bolinha">B</span>ㅤ<span id="testetexto2"></span></label>
                     </span>
                     <span>
                         <input style="display: none;" type="radio" id="terceiraOpcao" name="option" class="radio"
                             value="alternativaC" />
-                        <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+                        <label id="labelOpcaoTres" for="terceiraOpcao" class="option"><span
+                                class="bolinha">C</span>ㅤ<span id="testetexto3"></span></label>
                     </span>
                     <span>
                         <input style="display: none;" type="radio" id="quartaOpcao" name="option" class="radio"
                             value="alternativaD" />
-                        <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+                        <label id="labelOpcaoQuatro" for="quartaOpcao" class="option""><span class="
+                            bolinha">D</span>ㅤ<span id="testetexto4"></span></label>
                     </span>
                 </div>
 
                 <div id="botoes" class="flex-colunar padding-8">
-                    <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
-                    <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
-                    <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
-                    <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+                    <button class="botoes" onclick="submeter()" id="btnSubmeter">Checar resposta</button>
+                    <button class="botoes" onclick="avancar()" id="btnProx" style="display: none;" disabled>Próxima
+                        questão</button>
                 </div>
-
             </div>
         </div>
     </main>
@@ -418,7 +422,6 @@
     var contador = 0
     var tempo = 0
     var minutos = 0
-    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
     function onloadEsconder() {
         // telinhas de questões
@@ -446,6 +449,22 @@
 
         escolhido = quiz
         idQuiz = idDoquiz
+
+         if (idQuiz == 1) {
+            tituloQuiz.innerHTML += "A história do xadrez"
+            dificuldade.innerHTML = "Fácil"
+            document.getElementById('dificuldade').style.color = "green"
+
+        } else if (idQuiz == 2) {
+            tituloQuiz.innerHTML += "Campeões Mundiais de Xadrez"
+            dificuldade.innerHTML = "Médio"
+            document.getElementById('dificuldade').style.color = "rgb(232, 205, 2)"
+        } else if (idQuiz == 3) {
+            tituloQuiz.innerHTML += "Aberturas e Táticas de Xadrez"
+            dificuldade.innerHTML = "Difícil"
+            document.getElementById('dificuldade').style.color = "red"
+        }
+
         quantidadeDeQuestoes = escolhido.length
 
         document.getElementById('jogo').style.display = "flex"
@@ -454,10 +473,9 @@
 
         preencherHTMLcomQuestaoAtual(0)
 
-        btnSubmeter.disabled = false
+        // btnSubmeter.disabled = false
         btnProx.disabled = true
         // btnConcluir.disabled = true
-        btnTentarNovamente.disabled = true
     }
 
     function preencherHTMLcomQuestaoAtual(index) {
@@ -468,10 +486,10 @@
         console.log(questaoAtual)
         document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
         document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
-        document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
-        document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
-        document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
-        document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+        document.getElementById("testetexto1").innerHTML = questaoAtual.alternativaA;
+        document.getElementById("testetexto2").innerHTML = questaoAtual.alternativaB;
+        document.getElementById("testetexto3").innerHTML = questaoAtual.alternativaC;
+        document.getElementById("testetexto4").innerHTML = questaoAtual.alternativaD;
     }
 
     function submeter() {
@@ -489,11 +507,9 @@
         if (!hasChecked) {
             document.getElementById('aviso1').style.display = 'flex'
         } else {
-            btnSubmeter.disabled = true
             btnProx.disabled = false
 
             habilitarAlternativas(false)
-
             checarResposta()
         }
     }
@@ -505,12 +521,11 @@
         segundaOpcao.disabled = opcaoEscolhida
         terceiraOpcao.disabled = opcaoEscolhida
         quartaOpcao.disabled = opcaoEscolhida
-
     }
 
     function avancar() {
-        btnProx.disabled = true
-        btnSubmeter.disabled = false
+        document.getElementById('btnSubmeter').style.display = 'flex';
+        document.getElementById('btnProx').style.display = 'none';
 
         desmarcarRadioButtons()
 
@@ -525,45 +540,46 @@
     }
 
     function tentarNovamente() {
-        // atualiza a página
         window.location.reload()
     }
 
     function checarResposta() {
-        const questaoAtual = escolhido[numeroDaQuestaoAtual] // questão atual 
-        const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
+        const questaoAtual = escolhido[numeroDaQuestaoAtual]; // questão atual 
+        const respostaQuestaoAtual = questaoAtual.alternativaCorreta; // qual é a resposta correta da questão atual
 
         const options = document.getElementsByName("option"); // recupera alternativas no html
 
-        let alternativaCorreta = null // variável para armazenar a alternativa correta
+        let alternativaCorreta = null; // variável para armazenar a alternativa correta
 
         options.forEach((option) => {
             if (option.value === respostaQuestaoAtual) {
-                console.log("alternativaCorreta está no componente: " + alternativaCorreta)
-                alternativaCorreta = option.labels[0].id
+                alternativaCorreta = option.labels[0].id;
             }
-        })
+        });
 
-        // verifica se resposta assinalada é correta
         options.forEach((option) => {
             if (option.checked === true && option.value === respostaQuestaoAtual) {
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-                pontuacaoFinal++
-                certas++
-                document.getElementById("spanCertas").innerHTML = certas
-                numeroDaQuestaoAtual++
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg");
+                pontuacaoFinal++;
+                certas++;
+                document.getElementById("spanCertas").innerHTML = certas;
+                numeroDaQuestaoAtual++;
             } else if (option.checked && option.value !== respostaQuestaoAtual) {
-                const wrongLabelId = option.labels[0].id
+                const wrongLabelId = option.labels[0].id;
 
-                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-                tentativaIncorreta++
-                erradas++
-                document.getElementById("spanErradas").innerHTML = erradas
-                numeroDaQuestaoAtual++
+                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg");
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg");
+                tentativaIncorreta++;
+                erradas++;
+                document.getElementById("spanErradas").innerHTML = erradas;
+                numeroDaQuestaoAtual++;
             }
-        })
+        });
+        document.getElementById('btnSubmeter').style.display = 'none';
+        document.getElementById('btnProx').style.display = 'flex';
+        options.forEach(option => option.checked = false);
     }
+
 
     function limparCoresBackgroundOpcoes() {
         const options = document.getElementsByName("option");
@@ -584,44 +600,71 @@
     function finalizarJogo() {
         document.getElementById('pontuacao').style.display = "flex"
         document.getElementById('jogo').style.display = "none"
-        document.getElementById('btnTentarNovamente').style.display = "flex"
         let textoParaMensagemFinal = null
         let classComCoresParaMensagemFinal = null
         porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
         clearInterval(tempo);
-        // alert(minutos + ':' + contador)
 
+        
 
-        if (porcentagemFinalDeAcertos <= 0.3) {
-            textoParaMensagemFinal = "Parece que você não estudou..."
-            classComCoresParaMensagemFinal = "text-danger-with-bg"
-        }
-        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
-            textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
-            classComCoresParaMensagemFinal = "text-warning-with-bg"
-        }
-        else if (porcentagemFinalDeAcertos >= 0.9) {
-            textoParaMensagemFinal = "Uau, parabéns!"
-            classComCoresParaMensagemFinal = "text-success-with-bg"
-        }
+        textoParaMensagemFinal = `
+        <br>Você acertou ${Math.round(porcentagemFinalDeAcertos * 100)}% das questões. 
+        <br><canvas id="GraficoResultado" width="300" height="300"></canvas>
+        <br><button class="botoes" onclick="tentarNovamente()">Tentar novamente</button>
+    `
 
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
+        const msgFinal = document.getElementById('msgFinal')
+        msgFinal.innerHTML = textoParaMensagemFinal
+        msgFinal.classList.add(classComCoresParaMensagemFinal)
 
+        // Espera o canvas estar no DOM
+        setTimeout(() => {
+            const ctx = document.getElementById('GraficoResultado').getContext('2d')
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Acertos', 'Erros'],
+                    datasets: [{
+                        label: 'Fez Quiz',
+                        data: [pontuacaoFinal, quantidadeDeQuestoes - pontuacaoFinal],
+                        backgroundColor: ['#2ecc71', '#e74c3c'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    circumference: 57 * Math.PI,
+                    rotation: 86 * Math.PI,
+                    responsive: false,
+                    plugins: {
+                        datalabels: {
+                            color: '#fff',
+                            font: {
+                                weight: 'bold',
+                                size: 14
+                            },
+                            formatter: (value) => `${value}`
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    }
+                },
+                plugins: [ChartDataLabels]
+            });
+        }, 0);
 
-        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
         document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
-
         document.getElementById('jogo').classList.add("text-new-gray")
-
-        arredondada = Math.round((porcentagemFinalDeAcertos) * 100)
-
         btnProx.disabled = true
-        btnSubmeter.disabled = true
-        // btnConcluir.disabled = true
-        btnTentarNovamente.disabled = false
-        guardar()
+        arredondada = Math.round(porcentagemFinalDeAcertos * 100)
 
+        guardar()
+    }
+
+
+    function finalizar() {
+        window.location.reload()
     }
 
 
@@ -645,9 +688,7 @@
                 console.log("resposta: ", resposta);
 
                 if (resposta.ok) {
-
-                    alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...")
-
+                    console.log('resposta enviada ao banco');
                 } else {
                     throw "Houve um erro ao tentar realizar o cadastro!";
                 }
@@ -655,7 +696,6 @@
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
-
         return false;
     }
 
@@ -692,4 +732,5 @@
                 console.error("Erro ao buscar sensores:", error);
             });
     }
+
 </script>
