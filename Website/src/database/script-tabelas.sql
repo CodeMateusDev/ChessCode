@@ -55,7 +55,51 @@ CREATE TABLE QUIZ(
 SELECT count(DISTINCT fkusuario) as 'QntQuiz1' from resultado join quiz on fkQuiz = idquiz where idQuiz = 1; 
 
 insert into usuario VALUES
-(DEFAULT,'admin','admin', 'admin','masculino',1,10,'experiente');
+(DEFAULT,'pipi','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSorrJGg54ep7K0-I_T2JGu0v0Zf9n48hOuww&s', 'pipi','masculino',1,10,'experiente');
+
+select nome, min(tempo) from usuario join resultado on fkusuario = idusuario GROUP BY nome 
+ORDER BY nome limit 5;
+
+
+-- media de acerto por quiz - quiz 1, quiz 2, quiz 3
+select round(avg (acertos), 0) from resultado where fkquiz = 1;
+
+select round(avg (acertos), 0) from resultado where fkquiz = 2;
+
+select round(avg (acertos), 0) from resultado where fkquiz = 3;
+
+
+--quantidade de realização por quiz
+select count(idresultado) as 'qntQuiz1' from resultado where fkquiz = 1;
+select count(idresultado) as 'qntQuiz1' from resultado where fkquiz = 2;
+select count(idresultado) as 'qntQuiz1' from resultado where fkquiz = 3;
+
+
+--media de acerto por nível
+select round(avg (acertos), 0) from resultado join usuario on fkusuario = idusuario where nivel = 'iniciante';
+
+select round(avg (acertos), 0) from resultado join usuario on fkusuario = idusuario where nivel = 'intermediario';
+
+select round(avg (acertos), 0) from resultado join usuario on fkusuario = idusuario where nivel = 'experiente';
+
+--média de tempo por nível
+
+select ROUND(avg(tempo),0) from resultado join usuario on fkusuario = idusuario where nivel = 'iniciante';
+
+select ROUND(avg(tempo),0) from resultado join usuario on fkusuario = idusuario where nivel = 'intermediario';
+
+select ROUND(avg(tempo),0) from resultado join usuario on fkusuario = idusuario where nivel = 'experiente';
+
+
+
+
+
+
+
+
+
+
+
 (DEFAULT,'asjdoidoiahdoisas','asjdoidoiahdoisas', 'asjdoidoiahdoisas','feminino',1,10,'Intermediario');
 
 select * from usuario;
@@ -70,8 +114,6 @@ VALUES ('1', '1', '1', '21', '12', '12', CURDATE());
 
 insert into quiz values
 (DEFAULT,1,2,3,1,3,1.1);
-
-select * from quiz;
 
 SELECT nome from quiz join usuario on fkusuario = idusuario where idusuario = 21;
 

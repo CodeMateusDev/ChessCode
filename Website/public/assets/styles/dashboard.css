@@ -236,23 +236,4 @@ aside svg {
         margin-left: 8%;
         padding-left: 4%;
     }
-
-    .acertos {
-        width: 99%;
-        border-left: 4px solid #01ff05;
-        border-top-left-radius: 2px;
-        border-bottom-left-radius: 2px;
-        text-align: start;
-        margin-left: 8%;
-        padding-left: 4%;
-    }
-    .erros{
-        width: 99%;
-        border-left: 4px solid #ff0101;
-        border-top-left-radius: 2px;
-        border-bottom-left-radius: 2px;
-        text-align: start;
-        margin-left: 8%;
-        padding-left: 4%;
-    }
 }

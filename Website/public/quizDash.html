@@ -29,7 +29,7 @@
                 </div>
             </button>
 
-            <button id="selecionado" class="select-aside" onclick="window.location = 'quiz1.html'">
+            <button id="selecionado" class="select-aside">
                 <svg class="icone" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision"
                     text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd"
                     clip-rule="evenodd" viewBox="0 0 512 513.11">
@@ -78,17 +78,7 @@
         <div class="graficos">
             <div class="linha">
                 <div class="caixas_grafico">
-                    <canvas class="VizuGrafico" id="GraficoAcertos"></canvas>
-                    <div class="textoGrafico">
-                        <div class="acertos">
-                            <p>Acertos</p>
-                            <span>10</span>
-                        </div>
-                        <div class="erros">
-                            <p>Erros</p>
-                            <span>20</span>
-                        </div>
-                    </div>
+                    <canvas class="graficoLinha" id="GraficoMediaQuiz"></canvas>
                 </div>
 
                 <div class="caixas_grafico">
@@ -135,16 +125,12 @@
     var nome = sessionStorage.NOME_USUARIO
 
     window.onload = () => {
-        setInterval(buscarTentativas, 2000)
-        setInterval(buscarAcertos, 2000)
-        setInterval(buscarErros, 2000)
-        setInterval(buscarTempo, 2000)
-
-        setInterval(buscarRealizacoes, 200)
-        setInterval(buscarQuantidadeQuiz, 200)
-        setInterval(buscarQuantidadeNivel, 200)
-
         span_nome.innerHTML = nome
+
+        buscarTentativas()
+
+        setInterval(buscarTentativas, 2000)
+
     }
 
     function ativar(n) {
@@ -187,7 +173,6 @@
                 dadoTentativa.innerHTML = "";
 
                 dashs.forEach(dados => {
-
                     dadoTentativa.innerHTML = dados.tentativa
                 });
             })
@@ -268,16 +253,16 @@
                 console.error("Erro ao buscar dados:", error);
             });
     }
+
     //BUSCA DE DADOS DOS GRÁFICOS
-    const GraficoAcertos = document.getElementById('GraficoAcertos');
-    const Acertos = new Chart(GraficoAcertos, {
-        type: 'pie',
+    const GraficoMediaQuiz = document.getElementById('GraficoMediaQuiz').getContext('2d');
+    const QntMediaQuiz = new Chart(GraficoMediaQuiz, {
+        type: 'bar',
         data: {
-            labels: false,
+            labels: ['Quiz 1', 'Quiz 2', 'Quiz 3'],
             datasets: [{
-                data: [masculino, feminino],
-                backgroundColor: ['#01ff05', '#ff0101'],
-                borderWidth: 0
+                data: [QntQuiz1, QntQuiz1, QntQuiz1],
+                backgroundColor: ['#3498db', '#2ecc71', '#e74c3c']
             }]
         },
         options: {
@@ -289,21 +274,37 @@
                         weight: 'bold',
                         size: 14
                     },
-                    formatter: (value) => `${value}%`
+                    formatter: (value) => `${value}`
+                },
+                legend: {
+                    display: false
                 },
                 title: {
                     display: true,
-                    text: 'Média de acertos',
-                    color: 'black',
+                    text: 'Média de acerto por quiz',
                     font: {
                         size: 18
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    grid: {
+                        display: true
+                    },
+                    ticks: {
+                        stepSize: 1
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
                     }
                 }
             }
         },
         plugins: [ChartDataLabels]
     });
-
 
     function buscarRealizacoes() {
         fetch(`/dashQuiz/listarQntNivel`, {
@@ -379,7 +380,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Média de acertos: Iniciante',
+                    text: 'Quantidade de realizações por quiz',
                     font: {
                         size: 18
                     }
@@ -430,7 +431,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Média de acertos: Intermediario',
+                    text: 'Media de acerto por nível de usuário',
                     font: {
                         size: 18
                     }
@@ -455,7 +456,7 @@
         plugins: [ChartDataLabels]
     });
 
-    
+
     const GraficoQntExperiente = document.getElementById('GraficoQntExperiente').getContext('2d');
     const QntQuizExperiente = new Chart(GraficoQntExperiente, {
         type: 'bar',
@@ -482,7 +483,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Média de acertos: Experiente',
+                    text: 'média de tempo por nível',
                     font: {
                         size: 18
                     }

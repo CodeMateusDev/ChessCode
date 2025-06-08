@@ -154,6 +154,16 @@
     var nome = sessionStorage.NOME_USUARIO
 
     window.onload = () => {
+        buscarUsuarios()
+        buscarQuizzes()
+        buscarQuizPopular()
+        buscarMedia()
+
+        buscarPublico()
+        buscarRealizacoes()
+        buscarQuantidadeQuiz()
+        buscarQuantidadeNivel()
+
         setInterval(buscarUsuarios, 200)
         setInterval(buscarQuizzes, 200)
         setInterval(buscarQuizPopular, 200)

@@ -2,7 +2,7 @@ var database = require("../database/config")
 
 function listarTentativas() {
   var instrucao = `
-    select count(idResultado) as tentativa from quiz join resultado on fkQuiz = idquiz where idQuiz = 1;
+    select count(idResultado) as tentativa from resultado;
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
@@ -26,7 +26,11 @@ function listarErros() {
 
 function listarTempo() {
   var instrucao = `
-      SELECT sum(tempo) as tempo from quiz where idQuiz = 1;
+
+  // SELECT sum(tempo) as tempo from quiz where idQuiz = 1;
+
+      
+SELECT sum(tempo) as tempo from resultado;
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
