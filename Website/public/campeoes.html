@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/styles/campoes.css">
+    <script src="assets/scripts/login.js"></script>
+    <title>ChessCode</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="assets/img/LOGO.svg">
+        </div>
+        <div class="navegacao">
+            <button onclick="window.location = 'index.html'">História</button>
+            <button id="select">Campeões</button>
+            <button>Figuras Históricas</button>
+            <button id="quiz" onclick="analisar()">Quiz</button>
+            <button id="dashboard" onclick="window.location = 'dashboard.html'">Dashboard</button>
+        </div>
+        <div class="acesso">
+            <button id="button_sair" class="sair" onclick="limparSessao()">Sair</button>
+            <button id="button_entrar" class="entrar" onclick="window.location = 'login.html'">Entrar</button>
+            <button id="button_cadastrar" class="cadastro"
+                onclick="window.location = 'cadastro.html'">Cadastrar</button>
+        </div>
+    </nav>
+    <main class="campeoes">
+        <h1>Todos os campões mundiais FIDE</h1>
+
+        <div id="containerCards">
+            <div class="cards">
+                <div class="imagem">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3apgIW3MPE9qtkhNlrCPGDWI9FiB3xSSgEPUUFfrUch8c4BrCCt2fFNoKpcQj5YehkQkGEyGLW68mII-2hhWrxQ" alt="">
+                </div>
+                <div class="textos">
+                    <h2 class="nome">Gukesh D.</h2>
+                    <div class="info">
+                        <p class="vezes">🏆 Campeão 1 vez</p>
+                        <p class="anos">📆 2024</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="imagem">
+                    <img src="https://images.sportschau.de/image/dd0cdd65-097c-4f63-b0ee-fc1bfe4f3aef/AAABk070Pms/AAABkZLngyM/1x1-256/schach-ding-liren-102.jpg" alt="">
+                </div>
+                <div class="textos">
+                    <h2 class="nome">Ding Liren</h2>
+                    <div class="info">
+                        <p class="vezes">🏆 Campeão 1 vez</p>
+                        <p class="anos">📆 2023</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="imagem">
+                    <img src="https://images.sportschau.de/image/55f2d96c-1dbc-4d92-b16b-d5def31a2e25/AAABlAyGauE/AAABkZLngyM/1x1-256/carlsen-114.webp" alt="">
+                </div>
+                <div class="textos">
+                    <h2 class="nome">Magnus Carlsen</h2>
+                    <div class="info">
+                        <p class="vezes">🏆 Campeão 5 vezes</p>
+                        <p class="anos">📆 2013 - 2014 - 2016 - 2018 - 2021</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="imagem">
+                    <img src="https://pbs.twimg.com/profile_images/1753807835744419840/rVu25gns_400x400.jpg" alt="">
+                </div>
+                <div class="textos">
+                    <h2 class="nome">v. Anand</h2>
+                    <div class="info">
+                        <p class="vezes">🏆 Campeão 4 vezes</p>
+                        <p class="anos">📆 2007 - 2008 - 2010 - 2012</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="imagem">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Vladimir_Kramnik_2005.jpg" alt="">
+                </div>
+                <div class="textos">
+                    <h2 class="nome">Vladimir Kramnik</h2>
+                    <div class="info">
+                        <p class="vezes">🏆 Campeão 3 vezes</p>
+                        <p class="anos">📆 2000 - 2004 - 2006</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="imagem">
+                    <img src="https://rutelegraf.com/uploads/persons/436c715d9c32078fb7e4eb9082941838_256.jpg" alt="">
+                </div>
+                <div class="textos">
+                    <h2 class="nome">Garry Kasparov</h2>
+                    <div class="info">
+                        <p class="vezes">🏆 Campeão 6 vezes</p>
+                        <p class="anos">📆 1985 - 1986 - 1987 - 1990 - 1993 - 1995</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="imagem">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlXm3e34fnrR9oTbfA9Go9eEEpw6kY2XYRjw&s" alt="">
+                </div>
+                <div class="textos">
+                    <h2 class="nome">Anataly Karpov</h2>
+                    <div class="info">
+                        <p class="vezes">🏆 Campeão 3 vezes</p>
+                        <p class="anos">📆 1978 - 1981 - 1984</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="imagem">
+                    <img src="https://hips.hearstapps.com/hmg-prod/images/bobby-fischer-gettyimages-495892222.jpg?crop=1xw:1.0xh;center,top&resize=1200:*" alt="">
+                </div>
+                <div class="textos">
+                    <h2 class="nome">Bobby Fischer</h2>
+                    <div class="info">
+                        <p class="vezes">🏆 Campeão 1 vez</p>
+                        <p class="anos">📆 1972</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="imagem">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Boris_Spasski_1984_Saloniki.jpg/330px-Boris_Spasski_1984_Saloniki.jpg" alt="">
+                </div>
+                <div class="textos">
+                    <h2 class="nome">Boris Spassky</h2>
+                    <div class="info">
+                        <p class="vezes">🏆 Campeão 1 vez</p>
+                        <p class="anos">📆 1969</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="imagem">
+                    <img src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/pete/phpQ1LaCq.jpeg" alt="">
+                </div>
+                <div class="textos">
+                    <h2 class="nome">V. Petrosian</h2>
+                    <div class="info">
+                        <p class="vezes">🏆 Campeão 2 vezes</p>
+                        <p class="anos">📆 1963 - 1966</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="imagem">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgjQh3xImUi8OU3JepJUrQwtiGJw4l9A3W1g&s" alt="">
+                </div>
+                <div class="textos">
+                    <h2 class="nome">Mikhail Tal</h2>
+                    <div class="info">
+                        <p class="vezes">🏆 Campeão 1 vez</p>
+                        <p class="anos">📆 1960</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="imagem">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFx-f1NmOSUySFP6orvQwxxw-NdijHQ4R1Gg&s" alt="">
+                </div>
+                <div class="textos">
+                    <h2 class="nome">Vasily Smyslov</h2>
+                    <div class="info">
+                        <p class="vezes">🏆 Campeão 1 vez</p>
+                        <p class="anos">📆 1957</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="imagem">
+                    <img src="https://worldchesshof.org/wp-content/uploads/2025/02/MikhailBotvinnik400x400_6.jpg" alt="">
+                </div>
+                <div class="textos">
+                    <h2 class="nome">Mikhail Botvinnik</h2>
+                    <div class="info">
+                        <p class="vezes">🏆 Campeão 5 vezes</p>
+                        <p class="anos">📆 1948 - 1951 - 1954 - 1958 - 1961</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="imagem">
+                    <img src="https://chessentials.com/wp-content/uploads/2017/11/Max-Euwe-1060x1090.jpg" alt="">
+                </div>
+                <div class="textos">
+                    <h2 class="nome">Max Euwe</h2>
+                    <div class="info">
+                        <p class="vezes">🏆 Campeão 1 vez</p>
+                        <p class="anos">📆 1935</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="imagem">
+                    <img src="https://images.chesscomfiles.com/uploads/v1/group/26036.5f6db7ac.160x160o.e8ca51546e85@2x.jpeg" alt="">
+                </div>
+                <div class="textos">
+                    <h2 class="nome">Alexander Alekhine</h2>
+                    <div class="info">
+                        <p class="vezes">🏆 Campeão 4 vezes</p>
+                        <p class="anos">📆 1927 - 1929 - 1934 - 1937</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="imagem">
+                    <img src="https://www.tabladeflandes.com/jose_raul/capablanca.jpg" alt="">
+                </div>
+                <div class="textos">
+                    <h2 class="nome">Raul Capablanca</h2>
+                    <div class="info">
+                        <p class="vezes">🏆 Campeão 1 vez</p>
+                        <p class="anos">📆 1921</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="imagem">
+                    <img src="https://preview.redd.it/8x64xxhqgn051.png?width=640&crop=smart&auto=webp&s=ce2b433ada065979ffc29a40647d3ad397ac0f92" alt="">
+                </div>
+                <div class="textos">
+                    <h2 class="nome">Emanuel Lasker</h2>
+                    <div class="info">
+                        <p class="vezes">🏆 Campeão 5 vezes</p>
+                        <p class="anos">📆 1894 - 1896 - 1907 - 1908 - 1910</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="imagem">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8pkMqYQ29cy6LCs8jCsu-bZm-SKSgCEhXWQ&s" alt="">
+                </div>
+                <div class="textos">
+                    <h2 class="nome">Wilhelm Steinitz</h2>
+                    <div class="info">
+                        <p class="vezes">🏆 Campeão 4 vezes</p>
+                        <p class="anos">📆 1886 - 1889 - 1890 - 1892</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+
+</html>
+
+<script>
+    var id = sessionStorage.CARGO
+    var idusuario = sessionStorage.ID_USUARIO
+
+    function limparSessao() {
+        sessionStorage.clear();
+        window.location.reload();
+        console.log('limpou')
+    }
+
+    window.onload = () => {
+
+
+        if (idusuario == null) {
+            document.getElementById('button_entrar').style.display = 'flex';
+            document.getElementById('button_cadastrar').style.display = 'flex';
+        } else {
+            document.getElementById('button_sair').style.display = 'flex';
+            document.getElementById('button_entrar').style.display = 'none';
+            document.getElementById('button_cadastrar').style.display = 'none';
+        }
+
+        if (id == 1) {
+            document.getElementById('dashboard').style.display = 'flex'
+            document.getElementById('quiz').style.display = 'none'
+        } else {
+            document.getElementById('dashboard').style.display = 'none'
+        }
+
+        console.log(id)
+    }
+
+    function analisar() {
+        if (idusuario == null) {
+            window.location = 'login.html'
+        } else {
+            window.location = 'quizes.html'
+        }
+    }
+
+</script>

@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: 'poppins', 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #f0f4f7;
+}
+
+.linha {
+    display: flex;
+}
+
+.coluna {
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    width: 100%;
+    height: 12vh;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    height: 100%;
+
+    img {
+        height: 85%;
+    }
+}
+
+.navegacao {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    gap: 3%;
+    justify-content: center;
+    align-items: center;
+
+    #select {
+        background-color: white;
+        border: none;
+        padding: 0.5% 1% 0.5% 1%;
+        border-radius: 10px;
+        font-size: 120%;
+        font-weight: 500;
+        color: black;
+    }
+
+    button {
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 120%;
+        font-weight: 500;
+        padding: 0.5% 1% 0.5% 1%;
+        border-radius: 10px;
+
+    }
+
+    button:hover {
+        background-color: white;
+        border: none;
+        padding: 0.5% 1% 0.5% 1%;
+        border-radius: 10px;
+        font-weight: 500;
+        color: black;
+        transition: 0.2s;
+    }
+}
+
+.acesso {
+    width: 15%;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    .sair {
+        padding: 2% 10%;
+        background-color: transparent;
+        border: white 2px solid;
+        border-radius: 5px;
+        color: white;
+        font-size: 140%;
+        font-weight: 500;
+        position: relative;
+        left: 40%;
+        display: none;
+    }
+
+    .entrar {
+        padding: 2% 6%;
+        background-color: transparent;
+        border: white 2px solid;
+        border-radius: 5px;
+        color: white;
+        font-size: 120%;
+        font-weight: 500;
+        margin-right: 10px;
+        margin-left: -8%;
+    }
+
+    .cadastro {
+        padding: 2% 6%;
+        background-color: transparent;
+        border: white 2px solid;
+        border-radius: 5px;
+        color: white;
+        font-size: 120%;
+        font-weight: 500;
+        margin-right: 10px;
+    }
+
+    button:hover {
+        background-color: white;
+        color: black;
+        transition: 0.2s;
+    }
+}
+
+h1 {
+    text-align: center;
+    margin: 1vh 0vw;
+}
+
+#containerCards {
+    width: 96vw;
+    height: auto;
+    padding: 2vh 1.5vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5vw;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 17.5vw;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+    border: 1px solid #606060;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+}
+
+.cards:hover {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+    transition: 0.2s;    
+}
+
+.imagem {
+    width: 100%;
+    height: 17vw;
+    overflow: hidden;
+    img {
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.textos {
+    width: 18.2vw;
+    margin: 1vh 1vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: end ;
+
+    .nome{
+        font-size: 3vh;
+        margin-left: 1vw;
+    }
+    .info{
+        margin: 1vh 1vw;
+    }
+}
