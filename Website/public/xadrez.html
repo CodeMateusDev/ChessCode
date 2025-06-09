@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/styles/xadrez.css">
+    <script src="assets/scripts/login.js"></script>
+    <title>ChessCode</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="assets/img/LOGO.svg">
+        </div>
+        <div class="navegacao">
+            <button onclick="window.location = 'index.html'">História</button>
+            <button id="select">Campeões</button>
+            <button>Figuras Históricas</button>
+            <button id="quiz" onclick="analisar()">Quiz</button>
+            <button id="dashboard" onclick="window.location = 'dashboard.html'">Dashboard</button>
+        </div>
+        <div class="acesso">
+            <button id="button_sair" class="sair" onclick="limparSessao()">Sair</button>
+            <button id="button_entrar" class="entrar" onclick="window.location = 'login.html'">Entrar</button>
+            <button id="button_cadastrar" class="cadastro"
+                onclick="window.location = 'cadastro.html'">Cadastrar</button>
+        </div>
+    </nav>
+    <main class="conteúdo">
+        <div class="InfoTabuleiro">
+            <div class="tabuleiro">
+                <div id="conteinerTabuleiro">
+                </div>
+            </div>
+            <div class="texto">
+                <h1>Sobre o xadrez</h1>
+                <p>O xadrez é um jogo de tabuleiro estratégico para dois jogadores que se desenrola em um tabuleiro
+                    quadriculado com 64 casas alternadamente claras e escuras. O jogo representa uma batalha entre dois
+                    exércitos, cada um comandado por um rei. <br>
+
+                    O objetivo do jogo é dar xeque-mate ao rei adversário, uma situação em que o rei está sob ameaça de
+                    captura (em xeque) e não há maneira de remover essa ameaça</p>
+
+                    <h1>Estratégia</h1>
+                    <p>O xadrez é reconhecido como um dos jogos mais profundos estrategicamente. Envolve elementos de tática, estratégia, planejamento e memória. Os jogadores devem antecipar os movimentos do oponente e planejar suas próprias jogadas com vários movimentos de antecedência.</p>
+            </div>
+        </div>
+        <div class="infoPecas">
+            <h1>Peças de xadrez e seus movimentos</h1>
+            <div class="containerPecas">
+                <div class="card">
+                    <div class="imagemPecas">
+                        <img src="assets/img/peao-icon.svg" alt="">
+                    </div>
+                    <div class="textoPecas">
+                        <b class="nomePeca">Peão</b>
+                        <p class="quantidadePeca">Quantidade: 8 por jogador</p>
+                        <p class="descricaoPeca">Move-se para frente uma casa por vez. No primeiro movimento, pode avançar duas casas. Captura peças na diagonal. Pode ser promovido ao atingir a última fileira.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="imagemPecas">
+                        <img src="assets/img/torre_icone.svg" alt="">
+                    </div>
+                    <div class="textoPecas">
+                        <b class="nomePeca">Torre</b>
+                        <p class="quantidadePeca">Quantidade: 2 por jogador</p>
+                        <p class="descricaoPeca">Move-se em linha reta horizontalmente ou verticalmente por qualquer número de casas. Participa do movimento especial chamado roque com o rei.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="imagemPecas">
+                        <img src="assets/img/cavalo_icone.svg" alt="">
+                    </div>
+                    <div class="textoPecas">
+                        <b class="nomePeca">Cavalo</b>
+                        <p class="quantidadePeca">Quantidade: 2 por jogador</p>
+                        <p class="descricaoPeca">Move-se em forma de "L": duas casas em uma direção e então uma casa em direção perpendicular. É a única peça que pode pular sobre outras peças.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="imagemPecas">
+                        <img src="assets/img/bispo_icone.svg" alt="">
+                    </div>
+                    <div class="textoPecas">
+                        <b class="nomePeca">Bispo</b>
+                        <p class="quantidadePeca">Quantidade: 2 por jogador</p>
+                        <p class="descricaoPeca">Move-se na diagonal por qualquer número de casas. Cada bispo permanece sempre em casas da mesma cor durante todo o jogo.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="imagemPecas">
+                        <img src="assets/img/rainha-svg.svg" alt="">
+                    </div>
+                    <div class="textoPecas">
+                        <b class="nomePeca">Rainha</b>
+                        <p class="quantidadePeca">Quantidade: 1 por jogador</p>
+                        <p class="descricaoPeca">Combina os movimentos da torre e do bispo, podendo mover-se em linha reta ou na diagonal por qualquer número de casas. É a peça mais poderosa do jogo.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="imagemPecas">
+                        <img src="assets/img/rei-svg.svg" alt="">
+                    </div>
+                    <div class="textoPecas">
+                        <b class="nomePeca">Rei</b>
+                        <p class="quantidadePeca">Quantidade: 1 por jogador</p>
+                        <p class="descricaoPeca">Move-se uma casa em qualquer direção. Não pode se mover para uma casa ameaçada por uma peça adversária. Pode realizar o movimento especial chamado roque com a torre.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+
+</html>
+
+<script>
+    var linha = []
+
+    for (let i = 1; i <= 8; i++) {
+        linha.push(i);
+    }
+
+    for (let i = 0; i < 8; i++) {
+        conteinerTabuleiro.innerHTML += `<div class="linha" id="linha${linha[i]}"></div>`;
+        for (let casa = 0; casa < 8; casa++) {
+            if (i % 2 == 0) {
+                if (casa % 2 == 0) {
+                    document.getElementById(`linha${linha[i]}`).innerHTML += `<div class="branco"></div>`;
+                } else {
+                    document.getElementById(`linha${linha[i]}`).innerHTML += `<div class="preto"></div>`;
+                }
+            } else {
+                if (casa % 2 == 0) {
+                    document.getElementById(`linha${linha[i]}`).innerHTML += `<div class="preto"></div>`;
+                } else {
+                    document.getElementById(`linha${linha[i]}`).innerHTML += `<div class="branco"></div>`;
+                }
+            }
+        }
+    }
+
+
+    var id = sessionStorage.CARGO
+    var idusuario = sessionStorage.ID_USUARIO
+
+    function limparSessao() {
+        sessionStorage.clear();
+        window.location.reload();
+        console.log('limpou')
+    }
+
+    window.onload = () => {
+
+
+        if (idusuario == null) {
+            document.getElementById('button_entrar').style.display = 'flex';
+            document.getElementById('button_cadastrar').style.display = 'flex';
+        } else {
+            document.getElementById('button_sair').style.display = 'flex';
+            document.getElementById('button_entrar').style.display = 'none';
+            document.getElementById('button_cadastrar').style.display = 'none';
+        }
+
+        if (id == 1) {
+            document.getElementById('dashboard').style.display = 'flex'
+            document.getElementById('quiz').style.display = 'none'
+        } else {
+            document.getElementById('dashboard').style.display = 'none'
+        }
+
+        console.log(id)
+    }
+
+    function analisar() {
+        if (idusuario == null) {
+            window.location = 'login.html'
+        } else {
+            window.location = 'quizes.html'
+        }
+    }
+
+</script>
