@@ -243,7 +243,7 @@ main .linha {
     #torre {
         height: 90%;
         position: absolute;
-        top: 205%;
+        top: 220%;
         right: 0;
     }
 }
@@ -301,7 +301,7 @@ main .linha {
     #rei {
         height: 90%;
         position: absolute;
-        top: 305%;
+        top: 318%;
         left: 0;
     }
 }
