@@ -18,7 +18,7 @@ function listarQuizzes() {
 
 function listarQuizPopular() {
   var instrucao = `
-      select DISTINCT fkQuiz as idQuiz, COUNT(*) as total from resultado GROUP BY fkQuiz ORDER BY total DESC limit 1;
+      select count(idusuario) as soma, nivel as total from usuario  GROUP BY nivel ORDER BY soma DESC limit 1; 
     `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);

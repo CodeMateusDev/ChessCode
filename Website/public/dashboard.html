@@ -145,7 +145,7 @@
             </div>
 
             <div class="kpi">
-                <p>Quiz Mais Popular</p>
+                <p>Nível mais popular</p>
                 <span class="dados" id="span_popular"></span>
             </div>
 
@@ -180,7 +180,7 @@
         setInterval(buscarMedia, 1000)
 
         setInterval(buscarPublico, 1000)
-        setInterval(buscarRealizacoes, 1000)
+        setInterval(buscarRealizacoes, 500)
         setInterval(buscarQuantidadeQuiz, 1000)
         setInterval(buscarQuantidadeNivel, 1000)
 
@@ -273,7 +273,7 @@
                 dadosPopular.innerHTML = "";
 
                 dashs.forEach(dados => {
-                    dadosPopular.innerHTML += `${dados.idQuiz}`
+                    dadosPopular.innerHTML += `${dados.total}`
                 });
             })
             .catch(error => {
