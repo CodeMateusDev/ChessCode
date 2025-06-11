@@ -180,7 +180,7 @@
         setInterval(buscarMedia, 1000)
 
         setInterval(buscarPublico, 1000)
-        setInterval(buscarRealizacoes, 500)
+        setInterval(buscarRealizacoes, 1000)
         setInterval(buscarQuantidadeQuiz, 1000)
         setInterval(buscarQuantidadeNivel, 1000)
 
@@ -306,10 +306,6 @@
     }
 
 
-
-
-
-
     //BUSCA DE DADOS DOS GRÁFICOS
 
     const Graficopublico = document.getElementById('Graficopublico');
@@ -397,48 +393,7 @@
         Publico.update();
     }
 
-    const GraficoQuiz = document.getElementById('GraficofezQuiz');
-    const Quiz = new Chart(GraficoQuiz, {
-        type: 'pie',
-        data: {
-            labels: false,
-            datasets: [{
-                label: 'Fez Quiz',
-                data: [realizou, naoRealizou],
-                backgroundColor: ['#2ecc71', '#e74c3c'],
-                borderWidth: 0
-            }]
-        },
-        options: {
-            responsive: false,
-            plugins: {
-                datalabels: {
-                    color: '#fff',
-                    font: {
-                        weight: 'bold',
-                        size: 14
-                    },
-                    formatter: (value) => `${value}%`
-                },
-                legend: {
-                    display: true,
-                    position: 'top'
-                },
-                title: {
-                    display: true,
-                    text: 'Usuários que responderam ao menos um quiz',
-                    color: 'black',
-                    font: {
-                        size: 18
-                    }
-                }
-            }
-        },
-        plugins: [ChartDataLabels]
-    });
-
-
-    function buscarRealizacoes() {
+        function buscarRealizacoes() {
         fetch(`/dashboard/listarQntFeitos`, {
             method: 'GET'
         })
@@ -469,6 +424,47 @@
         Quiz.data.datasets[0].data = [porcentagemRealizou, porcentagemNaoRealizou];
         Quiz.update();
     }
+
+
+    const GraficoQuiz = document.getElementById('GraficofezQuiz');
+    const Quiz = new Chart(GraficoQuiz, {
+        type: 'pie',
+        data: {
+            labels: false,
+            datasets: [{
+                label: 'Fez Quiz',
+                data: [realizou, naoRealizou],
+                backgroundColor: ['#2ecc71', '#e74c3c'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: false,
+            plugins: {
+                datalabels: {
+                    color: '#fff',
+                    font: {
+                        weight: 'bold',
+                        size: 14
+                    },
+                    formatter: (value) => `${value}%`
+                },
+                legend: {
+                    display: true,
+                    position: 'top'
+                },
+                title: {
+                    display: true,
+                    text: 'Porcentagem de participação do quiz',
+                    color: 'black',
+                    font: {
+                        size: 18
+                    }
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
 
     const Graficonivel = document.getElementById('Graficonivel').getContext('2d');
     const QntNivel = new Chart(Graficonivel, {
